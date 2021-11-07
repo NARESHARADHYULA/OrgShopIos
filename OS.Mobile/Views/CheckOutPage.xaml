@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:TheOrganicShop.Mobile.Helpers;assembly=TheOrganicShop.Mobile"
+             xmlns:xForms="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             x:Class="TheOrganicShop.Mobile.Views.CheckOutPage"
+             BackgroundColor="{StaticResource PageBackGround}"
+             xmlns:converters="clr-namespace:TheOrganicShop.Mobile.Converters;assembly=TheOrganicShop.Mobile"
+             Title="CheckOut"
+             x:Name="checkoutPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:InverseZeroVisibilityConverter x:Key="inverseZeroVisibilityConverter"/>
+            <helpers:ZeroVisibilityConverter x:Key="zeroVisibilityConverter"/>
+            <helpers:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
+            <converters:DecimalToInt x:Key="decimalToIntConverter"/>
+            <converters:BooleanToColorConverter x:Key="BoolToColorConverter" />
+            <converters:BooleanToStringConverter x:Key="BoolToStringConverter" />
+            <converters:VisibilityConverter x:Key="VisibilityConverter" />
+            <converters:IntToThicknessConverter x:Key="intToThicknessConverter" />
+            <!--<ImagePathConverter x:Key="ImagePathConverter"/>-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="{StaticResource back_icon}" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+     
+       
+            <Grid VerticalOptions="FillAndExpand" Margin="16">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                    <!--Adress-->
+            <StackLayout Grid.Row="0" VerticalOptions="FillAndExpand">
+                <Label FontSize="18" Margin="0,0,0,12" Text="Address Details" Style="{StaticResource subheader}" TextColor="{StaticResource colPrim}"/>
+                <Frame   BackgroundColor="{StaticResource colQua}" HasShadow="True">
+                <StackLayout Margin="16" VerticalOptions="CenterAndExpand">
+                        <Label Style="{StaticResource subheader}"  Text="{Binding UserAddress.UserName}" FontAttributes="Bold" Padding="1"></Label>
+                        <Label Style="{StaticResource subheader}"  Text="{Binding UserAddress.Email}" Padding="1"></Label>
+                        <Label Style="{StaticResource subheader}"  Text="{Binding UserAddress.ApartmentName}" Padding="1"></Label>
+                        <Label Style="{StaticResource subheader}" Text="{Binding UserAddress.Address}" Padding="1"></Label>
+                        <Label Style="{StaticResource subheader}" Text="{Binding UserAddress.AreaName}" Padding="1"></Label>
+                        
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <xForms:SfBusyIndicator x:Name="busyIndicator" 
+                                        AnimationType="SingleCircle" 
+                                        IsBusy="{Binding IsLoading, Mode=TwoWay}" 
+                                        TextColor="{StaticResource colPrim}"
+                                        ViewBoxWidth="50"
+                                        ViewBoxHeight="50"/>
+            <!--OrderDetails-->
+                <StackLayout  Grid.Row="1" Margin="0,24,0,24">
+                <Label FontSize="18" Margin="0,0,0,12" Text="Payment Details" TextColor="{StaticResource colPrim}" Style="{StaticResource subheader}"  />
+                <Frame
+                    BackgroundColor="{StaticResource colQua}"
+                    HasShadow="True">
+                    <StackLayout Padding="8">
+                        <StackLayout Orientation="Horizontal" Margin="8">
+                            <Label  Margin="0,0,24,0" FontAttributes="Bold" HorizontalOptions="StartAndExpand"
+                            Text="Cart Value" Style="{StaticResource subheader}" TextColor="{StaticResource TitleColor}"/>
+                            <Label  Margin="0,0,24,0" FontAttributes="Bold" HorizontalOptions="EndAndExpand"
+                                        Text="{Binding CartAmount}"   Style="{StaticResource subheader}" />
+
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="8">
+                            <Label  Margin="0,0,24,0" FontAttributes="Bold" HorizontalOptions="StartAndExpand"
+                            Text="Delivery Service " Style="{StaticResource subheader}" TextColor="{StaticResource TitleColor}"/>
+                            <Label  Margin="0,0,24,0" FontAttributes="Bold" HorizontalOptions="EndAndExpand"
+                            Text="0" Style="{StaticResource subheader}" />
+                        </StackLayout>
+                        <BoxView  Margin="8" BackgroundColor="Gray" WidthRequest="1" HeightRequest="1"/>
+                        <StackLayout Orientation="Horizontal" Margin="8">
+                            <Label  Margin="0,0,24,0" FontAttributes="Bold" HorizontalOptions="StartAndExpand"
+                            Text="To Pay" Style="{StaticResource subheader}" TextColor="{StaticResource TitleColor}"/>
+                            <Label  Margin="0,0,24,0" FontAttributes="Bold" HorizontalOptions="EndAndExpand"
+                                        Text="{Binding CartAmount}"  Style="{StaticResource subheader}" />
+                        </StackLayout>
+                        <BoxView  Margin="8" BackgroundColor="Gray" WidthRequest="1" HeightRequest="1"/>
+                        <StackLayout Orientation="Horizontal" Margin="8">
+                            <Label  Margin="0,0,24,0" FontAttributes="Bold" HorizontalOptions="StartAndExpand"
+                            Text="Wallet Balance" Style="{StaticResource subheader}" TextColor="{StaticResource TitleColor}"/>
+                            <Label  Margin="0,0,24,0" FontAttributes="Bold" HorizontalOptions="EndAndExpand"
+                                        Text="{Binding UserWallet.TotalAvailableAmount,Converter={StaticResource decimalToIntConverter}}"   Style="{StaticResource subheader}" />
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </Frame>
+
+
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" VerticalOptions="EndAndExpand" Margin="0,0,0,24">
+                <Button
+                    Style="{StaticResource EllipseButtonStyle}"
+                    Padding="4"
+                    IsEnabled="{Binding ShouldEnablePlaceOrder}"
+                    Command="{Binding Path=BindingContext.PlaceOrderCommand, Source={x:Reference checkoutPage}}" 
+                    Text="Place Order"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

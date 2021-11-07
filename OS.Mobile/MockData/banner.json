@@ -1,0 +1,24 @@
+﻿{
+  "banners": [
+    {
+      "id": 1,
+      "icon": "fruits.jpg",
+      "name": "Vegetables"
+    },
+    {
+      "id": 2,
+      "icon": "fruits.jpg",
+      "name": "fruits"
+    },
+    {
+      "id": 3,
+      "icon": "fruits.jpg",
+      "name": "grocery"
+    },
+    {
+      "id": 4,
+      "icon": "fruits.jpg",
+      "name": "dairy"
+    }
+  ]
+}

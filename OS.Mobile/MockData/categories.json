@@ -1,0 +1,38 @@
+﻿{
+  "categories": [
+    {
+      "id": 1,
+      "icon": "fruits.jpg",
+      "name": "Vegetables",
+      "code": "v1",
+      "description": "vegetables are good to health",
+      "subcategories": [
+        {
+          "id": 1,
+          "name": "Organic"
+        },
+        {
+          "id": 2,
+          "name": "NonOrganics"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "icon": "fruits.jpg",
+      "name": "Food grains",
+      "code": "fg1",
+      "description": "cerels are good to health",
+      "subcategories": [
+        {
+          "id": 1,
+          "name": "Organic"
+        },
+        {
+          "id":2,
+          "name": "NonOrganics"
+        }
+      ]
+    }
+  ]
+}

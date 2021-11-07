@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:TheOrganicShop.Mobile.Controls;assembly=TheOrganicShop.Mobile"
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="{StaticResource PageBackGround}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="TheOrganicShop.Mobile.Views.UserWaiting">
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
+            <StackLayout VerticalOptions="CenterAndExpand" Spacing="0" Margin="16,0,16,0">
+
+                <controls:SVGImage
+                    Margin="0,10,0,0"
+                    HeightRequest="120"
+                    Source="stopwatch.svg"
+                    WidthRequest="120" />
+
+                <Label Margin="8"  Text="We are not serving your location." FontSize="Large" TextColor="{StaticResource TitleColor}" Style="{StaticResource TxtHeader}" HorizontalTextAlignment="Center"/>
+                <Label   Text="We will send you the notification once service is enabled." FontSize="Large" TextColor="{StaticResource TitleColor}" Style="{StaticResource TxtHeader}" HorizontalTextAlignment="Center"/>
+               
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

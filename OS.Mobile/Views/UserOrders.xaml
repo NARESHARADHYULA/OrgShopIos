@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:local="clr-namespace:TheOrganicShop.Mobile.Behaviors"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:xForms1="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:custom="clr-namespace:TheOrganicShop.Mobile.Views.ReusableViews"
+             x:Class="TheOrganicShop.Mobile.Views.UserOrders"
+             x:Name="orderspage"
+             BackgroundColor="{StaticResource PageBackGround}"
+              xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
+              xmlns:converters="clr-namespace:TheOrganicShop.Mobile.Converters;assembly=TheOrganicShop.Mobile"
+             xmlns:helpers="clr-namespace:TheOrganicShop.Mobile.Helpers;assembly=TheOrganicShop.Mobile"
+             Title="My Orders">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior  Command="{Binding  BackButtonCommand}" IconOverride="{StaticResource back_icon}" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:InverseZeroVisibilityConverter x:Key="inverseZeroVisibilityConverter"/>
+            <helpers:ZeroVisibilityConverter x:Key="zeroVisibilityConverter"/>
+            <helpers:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
+            <converters:DecimalToInt x:Key="decimalToIntConverter"/>
+            <converters:BooleanToColorConverter x:Key="BoolToColorConverter" />
+            <converters:BooleanToStringConverter x:Key="BoolToStringConverter" />
+            <converters:VisibilityConverter x:Key="VisibilityConverter" />
+            <converters:IntToThicknessConverter x:Key="intToThicknessConverter" />
+            <!--<ImagePathConverter x:Key="ImagePathConverter"/>-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid ColumnSpacing="0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <custom:CalenderView Grid.Row="0"  x:Name="calenderview"/>
+            <shimmer:SfShimmer x:Name="shimmer"  Grid.Row="1"   VerticalOptions="Start" 
+                                IsActive="{Binding BindingContext.IsLoading, Source={x:Reference Name=orderspage}}">
+                <shimmer:SfShimmer.CustomView>
+                    <Grid
+                    Padding="10"
+                    ColumnSpacing="15"
+                    RowSpacing="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80" />
+                            <RowDefinition Height="80" />
+                            <RowDefinition Height="80" />
+                            <RowDefinition Height="80" />
+                        </Grid.RowDefinitions>
+
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="0"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="2"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="3"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+
+
+                    </Grid>
+                </shimmer:SfShimmer.CustomView>
+                <shimmer:SfShimmer.Content>
+                <xForms:SfListView
+               
+                x:Name="Orders"
+                Orientation="Vertical"
+                ItemSpacing="6"
+                SelectionMode="None"
+                ItemSize="100"
+                ItemsSource="{Binding OrderSummaryInfoItems}">
+                <xForms:SfListView.Behaviors>
+                    <local:SfListViewTapBehavior Command="{Binding Path=BindingContext.OrderSelectedCommand, Source={x:Reference orderspage}}"/>
+                </xForms:SfListView.Behaviors>
+
+                <xForms:SfListView.ItemTemplate>
+                    <DataTemplate >
+                        <Frame HasShadow="True"
+                                   VerticalOptions="Center"
+                                    BackgroundColor="{StaticResource colQua}"
+                                   Margin="4"
+                                   Padding="4"
+                                   CornerRadius="4">
+                            <StackLayout >
+                                <StackLayout Orientation="Horizontal">
+                                            <Label  Margin="8,0,0,0" FontSize="15" Text="Order Reference" TextColor="{StaticResource TitleColor}"></Label>
+                                    <Label Margin="8,0,0,0" FontSize="16" Text="{Binding Number}" TextColor="{StaticResource TitleColor}" ></Label>
+                                    <Label  Text="{Binding TotalAmount, Converter={StaticResource decimalToIntConverter}}" Margin="0,0,8,0" TextColor="{StaticResource colPrim}" FontAttributes="Bold" HorizontalOptions="EndAndExpand"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                            <Label Margin="8,0,0,0" FontSize="15" TextColor="{StaticResource TitleColor}" Text="Status"></Label>
+                                    <Label  Margin="8,0,0,0" FontSize="16" Text="{Binding OrderStatus}"  FontAttributes="Bold" TextColor="{StaticResource colPrim}"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                            <Label Margin="8,0,0,0" Text="Placed On" TextColor="{StaticResource TitleColor}"></Label>
+                                    <Label Text="{Binding PlacedDate}" Margin="8,0,0,0"  TextColor="{StaticResource TitleColor}" ></Label>
+                                           
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </xForms:SfListView.ItemTemplate>
+            </xForms:SfListView>
+                </shimmer:SfShimmer.Content>
+            </shimmer:SfShimmer>
+            <!--<xForms1:SfBusyIndicator x:Name="busyIndicator"
+                                         Grid.Row="1"
+                                         VerticalOptions="Center"
+                                       AnimationType="SingleCircle"
+                                       IsBusy="{Binding IsLoading, Mode=TwoWay}"
+                                       TextColor="{StaticResource colPrim}"
+                                       ViewBoxWidth="50"
+                                       ViewBoxHeight="50"/>-->
+
+            <Label Text="No Orders Placed" Grid.Row="1" IsVisible="{Binding ShowNoOrdersPlaced}"  TextColor="{StaticResource TitleColor}" FontSize="16" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

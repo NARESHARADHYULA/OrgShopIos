@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TheOrganicShop.Mobile.Behaviors;assembly=TheOrganicShop.Mobile"
+             xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             x:Class="TheOrganicShop.Mobile.Views.DeliveryAreaVerification"
+             xmlns:local1="clr-namespace:TheOrganicShop.Mobile.Extensions"
+             Title="Delivery Verification"
+             BackgroundColor="{StaticResource PageBackGround}"
+             x:Name="deliveryAreaVerification">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}"
+                            IconOverride="{StaticResource back_icon}" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+            <ScrollView>
+            <StackLayout  Margin="16,16,16,16">
+               
+                <Frame BackgroundColor="{StaticResource colQua}" HasShadow="True">
+                    <StackLayout Margin="16,48,16,48">
+                        <ImageButton 
+                            WidthRequest ="120"
+                            HeightRequest     ="120"
+                            CornerRadius      ="60"
+                            VerticalOptions   ="Center"
+                            BackgroundColor="{StaticResource RoundedIconBackGround}"
+                            HorizontalOptions ="Center"
+                            Source="place"
+                            />
+                        <inputLayout:SfTextInputLayout
+                        ContainerType="Outlined"
+                        Hint="PhoneNumber"
+                            LeadingViewPosition="Inside"
+                        ReserveSpaceForAssistiveLabels="False"
+                        FocusedColor="{StaticResource colPrim}">
+                            <local1:CustomEntry Text="{Binding CreateUserWaitList.ContactNumber,  Mode=TwoWay}" Style="{StaticResource TextInput}"/>
+                            <inputLayout:SfTextInputLayout.LeadingView>
+                                <Label Style="{StaticResource subheader}" FontSize="18" FontAttributes="Bold"
+                                    Text="+91">
+                                </Label>
+                            </inputLayout:SfTextInputLayout.LeadingView>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout
+                        ContainerType="Outlined"
+                        Hint="Name"
+                        ReserveSpaceForAssistiveLabels="False"
+                        FocusedColor="{StaticResource colPrim}">
+                            <local1:CustomEntry Text="{Binding CreateUserWaitList.Name,  Mode=TwoWay}" Style="{StaticResource TextInput}"/>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout Hint="City" HelperText="start typing for city suggestions" Style="{StaticResource TextInputLayout}">
+                            <local1:CustomAutoComplete  Style="{StaticResource AutoComplete}" DisplayMemberPath="Name" DataSource="{Binding Cities}">
+                                <local1:CustomAutoComplete.Behaviors>
+                                    <local:SelectionChangedBehavior Command="{Binding Path=BindingContext.OnCitySelectedCommand, Source={x:Reference deliveryAreaVerification}}"/>
+                                </local1:CustomAutoComplete.Behaviors>
+                            </local1:CustomAutoComplete>
+                        </inputLayout:SfTextInputLayout>
+
+                            <inputLayout:SfTextInputLayout Hint="Pincode" HelperText="start typing for pincode suggestions"  Style="{StaticResource TextInputLayout}">
+                            <local1:CustomAutoComplete Style="{StaticResource AutoComplete}" DisplayMemberPath="Code"  DataSource="{Binding PinCodes}">
+                                <local1:CustomAutoComplete.Behaviors>
+                                    <local:SelectionChangedBehavior Command="{Binding Path=BindingContext.OnPinCodeSelectedCommand, Source={x:Reference deliveryAreaVerification}}"/>
+                                </local1:CustomAutoComplete.Behaviors>
+                            </local1:CustomAutoComplete>
+                        </inputLayout:SfTextInputLayout>
+
+                            <inputLayout:SfTextInputLayout Hint="Area" HelperText="start typing for area suggestions"   Style="{StaticResource TextInputLayout}">
+                            <local1:CustomAutoComplete Style="{StaticResource AutoComplete}"  DisplayMemberPath="Name"  DataSource="{Binding AreaNames}">
+                                <local1:CustomAutoComplete.Behaviors>
+                                    <local:SelectionChangedBehavior Command="{Binding Path=BindingContext.OnAreaSelectedCommand, Source={x:Reference deliveryAreaVerification}}"/>
+                                </local1:CustomAutoComplete.Behaviors>
+                            </local1:CustomAutoComplete>
+                        </inputLayout:SfTextInputLayout>
+                        <Frame  HorizontalOptions="End"  Margin="16" HasShadow="True" BackgroundColor="{StaticResource colPrim}" CornerRadius="128">
+                        <Button                
+                            FontAttributes="Bold"
+                            Command="{Binding SubmitAddressCommand}"
+                            Style="{StaticResource EllipseButtonStyle}"
+                            Text="Continue"/>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+                
+            </StackLayout>
+        </ScrollView>
+       
+    </ContentPage.Content>
+</ContentPage>

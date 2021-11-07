@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:behaviors="clr-namespace:TheOrganicShop.Mobile.Behaviors;assembly=TheOrganicShop.Mobile"
+             xmlns:controls="clr-namespace:TheOrganicShop.Mobile.Controls;assembly=TheOrganicShop.Mobile"
+             xmlns:badgeView="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:xForms1="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:converters="clr-namespace:TheOrganicShop.Mobile.Converters;assembly=TheOrganicShop.Mobile"
+             xmlns:helpers="clr-namespace:TheOrganicShop.Mobile.Helpers;assembly=TheOrganicShop.Mobile"
+             xmlns:searchHandlers="clr-namespace:TheOrganicShop.Mobile.SearchHandlers;assembly=TheOrganicShop.Mobile"
+             xmlns:viewModels="clr-namespace:TheOrganicShop.Mobile.ViewModels;assembly=TheOrganicShop.Mobile"
+             xmlns:xForms="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             x:Class="TheOrganicShop.Mobile.Views.ProductDetailPage"
+             x:Name="Products"
+             BackgroundColor="{StaticResource PageBackGround}"
+
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:InverseZeroVisibilityConverter x:Key="inverseZeroVisibilityConverter"/>
+            <helpers:ZeroVisibilityConverter x:Key="zeroVisibilityConverter"/>
+            <helpers:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
+            <converters:DecimalToInt x:Key="decimalToIntConverter"/>
+            <converters:OutOfStock x:Key="outOfStock"/>
+            <converters:BooleanToColorConverter x:Key="BoolToColorConverter" />
+            <converters:BooleanToStringConverter x:Key="BoolToStringConverter" />
+            <converters:VisibilityConverter x:Key="VisibilityConverter" />
+            <converters:IntToThicknessConverter x:Key="intToThicknessConverter" />
+            <converters:ActualPrice x:Key="ActualPriceConverter" />
+            <converters:ZeroToHide x:Key="ZeroToHideConverter" />
+            <converters:PercentageToText x:Key="PercentageToText" />
+            <converters:PriceOpeningTag x:Key="PriceOpeningTag" />
+            <converters:SourceConverter x:Key="SourceConverter" />
+            <!--<ImagePathConverter x:Key="ImagePathConverter"/>-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Behaviors>
+        <behaviors:CartBehavior />
+    </ContentPage.Behaviors>
+
+    <!--<Shell.SearchHandler>
+        -->
+    <!--<SearchHandler x:Name="searchHandler"
+                       Placeholder="Enter search term"
+                       ShowsResults="true"
+                       Command="{Binding SearchCommand}"
+                       CommandParameter="{Binding Source={x:Reference searchHandler}, Path=Query}"
+                       ItemsSource="{Binding SearchResults}"
+                       />-->
+    <!--
+        <searchHandlers:ProductSearchHandler Placeholder="Enter search term"
+                                             ShowsResults="true"
+                                             Command="{Binding Path=BindingContext.SearchCommand, Source={x:Reference Products}}"
+                                             CommandParameter="{Binding Source={x:Reference searchHandler}, Path=Query}"
+                                             DisplayMemberName="Name" 
+                                     
+                                             />
+    </Shell.SearchHandler>-->
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior   IconOverride="{StaticResource back_icon}" />
+    </Shell.BackButtonBehavior>
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label VerticalTextAlignment="Center"   HorizontalTextAlignment="Center" Text="Products"
+               Opacity="1" TextColor="White" 
+               Style="{StaticResource TxtCartDate}"/>
+            <badgeView:SfBadgeView
+            Padding="2"
+            HorizontalOptions="EndAndExpand"
+            Margin="{Binding Path=BindingContext.TotalOrderedItems, Source={x:Reference Products}, Converter={x:StaticResource intToThicknessConverter}}"
+            BadgeText="{Binding Path=BindingContext.TotalOrderedItems, Source={x:Reference Products}, Mode=TwoWay}"
+            HeightRequest="42"
+            VerticalOptions="CenterAndExpand"
+            WidthRequest="40">
+                <badgeView:SfBadgeView.Content>
+                    <ImageButton
+                        Command="{Binding Path=BindingContext.CheckoutCommand, Source={x:Reference Name=listView}}"
+                        Source="{StaticResource icon_cart}"
+                        BackgroundColor="{StaticResource colPrim}"
+                        Margin="-4,2,8,2"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="EndAndExpand"
+                    />
+
+                </badgeView:SfBadgeView.Content>
+                <badgeView:SfBadgeView.BadgeSettings>
+                    <badgeView:BadgeSetting
+                    BackgroundColor="{StaticResource colQua}"
+                    TextColor="{StaticResource colPrim}"
+                    BadgeType="None"
+                    FontSize="12"
+                   />
+                </badgeView:SfBadgeView.BadgeSettings>
+            </badgeView:SfBadgeView>
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="WhiteSmoke">
+                <SearchBar x:Name="productsfilter" Placeholder="Find Products"   TextColor="{StaticResource TitleColor}" PlaceholderColor="LightGray" />
+            </Frame>
+            <BoxView Grid.Row="1" HeightRequest="1" BackgroundColor="{DynamicResource Gray-200}"/>
+            <ScrollView>
+                
+                        <StackLayout>
+                    <shimmer:SfShimmer x:Name="shimmer"  Grid.Row="1"   VerticalOptions="Start" 
+                                IsActive="{Binding BindingContext.IsLoading, Source={x:Reference Name=Products}}">
+                        <shimmer:SfShimmer.CustomView>
+                            <Grid
+                    Padding="10"
+                    ColumnSpacing="15"
+                    RowSpacing="16">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="120" />
+                                    <RowDefinition Height="120" />
+                                    <RowDefinition Height="120" />
+                                    <RowDefinition Height="120" />
+                                </Grid.RowDefinitions>
+                                <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="0"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+                                
+
+                                <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+                                <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="2"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+                                <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="3"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+
+
+                            </Grid>
+                        </shimmer:SfShimmer.CustomView>
+                        <shimmer:SfShimmer.Content>
+                        <syncfusion:SfListView
+                Margin="8"
+                x:Name="listView"
+                Orientation="Vertical"
+                AutoFitMode="Height"
+                ItemSpacing="2"
+                SelectionMode="None"
+                ItemsSource="{Binding Products}">
+                                <syncfusion:SfListView.ItemTemplate>
+                                    <DataTemplate>
+                                     
+                                     <Frame Margin="4" BackgroundColor="{StaticResource colQua}" HasShadow="True">
+                                            <StackLayout HorizontalOptions="Fill">
+                                                <StackLayout Margin="8"   Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                                    
+                                                    <ffimageloading:CachedImage
+                                                        Margin="4"
+                                                            Source="{Binding ImageUri, Converter={StaticResource SourceConverter}}"
+                                                            ErrorPlaceholder="imageplaceholder.png"
+                                                            LoadingPlaceholder="imageplaceholder.png"
+                                                            Aspect="AspectFill"
+                                                            CacheDuration="1"
+                                                            WidthRequest="{OnIdiom Phone=120,
+                                                               Tablet=224,
+                                                               Desktop=200}"
+                                                            />
+                                                    <StackLayout Margin="8,4,4,4" VerticalOptions="StartAndExpand">
+                                                        <Label  Text="{Binding Name}" Style="{StaticResource TxtHeader}" HorizontalOptions="StartAndExpand" TextColor="{StaticResource TitleColor}" CharacterSpacing="0.5"    FontSize="16"  ></Label>
+                                                        <Label  Text="{Binding Weight}" HorizontalOptions="StartAndExpand" TextColor="{StaticResource TitleColor}"    FontSize="14"  ></Label>
+                                                        <StackLayout Orientation="Horizontal" Margin="2">
+                                                            <Label    Text="{Binding DiscountedPrice,Converter={StaticResource decimalToIntConverter}}" FontAttributes="Bold" HorizontalOptions="Start" Style="{StaticResource TxtHeader}" TextColor="{StaticResource colPrim}"  FontSize="16"  ></Label>
+                                                            <Label  x:Name="openingtag" Text="{Binding ActualPrice, Converter={StaticResource PriceOpeningTag},ConverterParameter={x:Reference openingtag}}"   Style="{StaticResource subheader}" TextColor="{StaticResource TitleColor}" FontSize="16"/>
+                                                            <Label x:Name="discount" Text="{Binding ActualPrice, Converter={StaticResource ActualPriceConverter},ConverterParameter={x:Reference discount}}" FontSize="16" TextDecorations="Strikethrough" Style="{StaticResource subheader}" TextColor="{StaticResource TitleColor}"/>
+                                                            <Label Text="{Binding DiscountPercent, Converter={StaticResource PercentageToText}}" FontSize="16" Style="{StaticResource subheader}" TextColor="{StaticResource TitleColor}"/>
+                                                             </StackLayout>
+                                                        <StackLayout x:Name="numericUpDown"  Margin="0,2"  Orientation="Horizontal" Spacing="16"
+                                                                      IsVisible="{Binding AvailableQuantity, Converter={StaticResource inverseZeroVisibilityConverter},ConverterParameter={x:Reference numericUpDown}}">
+                                                        <Frame HeightRequest="40" WidthRequest="40" BackgroundColor="{StaticResource colPrim}">
+                                                                <Frame.GestureRecognizers>
+                                                                    <TapGestureRecognizer  Command="{Binding Source={x:Reference listView}, Path=BindingContext.RmQuantityCommand}" CommandParameter="{Binding}" />
+                                                                </Frame.GestureRecognizers>
+                                                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                                                    <Label VerticalTextAlignment="Center" Text="-" FontSize="24" TextColor="White"/>
+                                                                </StackLayout>
+                                                         </Frame>
+                                                            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+                                                                <Label Text="{Binding Quantity, Mode=TwoWay}" FontSize="20" TextColor="{StaticResource TitleColor}"/>
+                                                            </StackLayout>
+                                                            <Frame HeightRequest="40" WidthRequest="40" BackgroundColor="{StaticResource colPrim}">
+                                                                <Frame.GestureRecognizers>
+                                                                    <TapGestureRecognizer  Command="{Binding Source={x:Reference listView}, Path=BindingContext.AddQuantityCommand}" CommandParameter="{Binding}"  />
+                                                                </Frame.GestureRecognizers>
+                                                            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+                                                                    <Label Text="+" FontSize="24" TextColor="White"/>
+                                                                </StackLayout>
+                                                            </Frame>
+                                                        </StackLayout>
+                                                        <Label Margin="2" FontSize="16" x:Name="MyLabel"  HorizontalOptions="Center" IsVisible="{Binding  IsCutOffTimeReached, Converter={StaticResource outOfStock},ConverterParameter={x:Reference MyLabel}}" TextColor="{StaticResource colPrim}" Style="{StaticResource subheader}"/>
+                                                        <Label  Text="{Binding Note}" HorizontalOptions="StartAndExpand" TextColor="{StaticResource TitleColor}"    FontSize="14"  ></Label>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                        
+                                    </DataTemplate>
+                                </syncfusion:SfListView.ItemTemplate>
+
+
+
+                            </syncfusion:SfListView>
+                        </shimmer:SfShimmer.Content>
+                    </shimmer:SfShimmer>
+                   
+
+            </StackLayout>
+                   
+            </ScrollView>
+            <StackLayout Style="{StaticResource BottomBar}" VerticalOptions="End"  >
+                <StackLayout Margin="8" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                    <Image
+                        Margin="12"
+                        Source="{StaticResource icon_cart}"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="EndAndExpand"
+                    />
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label FontAttributes="Bold" TextColor="{StaticResource colQua}"   Text="{Binding TotalPrice, Mode=TwoWay}"></Label>
+                        </StackLayout>
+                        <Label TextColor="{StaticResource colQua}" Style="{StaticResource subheader}" Text="{Binding TotalItems, StringFormat='{0:F0} Items'}"></Label>
+                    </StackLayout>
+
+                </StackLayout>
+                <StackLayout HorizontalOptions="End">
+                    <Button
+                    Style="{StaticResource EllipseButtonStyle_White}"
+                    Margin="0,0,24,0"
+                    VerticalOptions="CenterAndExpand"
+                    Command="{Binding Path=BindingContext.CheckoutCommand, Source={x:Reference Name=listView}}"
+                    Text=" Proceed "/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

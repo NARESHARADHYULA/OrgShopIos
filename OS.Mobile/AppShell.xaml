@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TheOrganicShop.Mobile.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ShellTemplate="clr-namespace:TheOrganicShop.Mobile.Views.ShellTemplates"
+    xmlns:view="clr-namespace:TheOrganicShop.Mobile.Views"
+    Title="Organic Shop" FlyoutBackgroundImageAspect="AspectFill"
+    FlyoutIcon="{StaticResource icon_fly_main}"
+    FlyoutBehavior="Flyout"
+    FlyoutHeaderTemplate="{DataTemplate ShellTemplate:FlyoutHeaderTemplate}"
+    FlyoutHeaderBehavior="Scroll"
+    ItemTemplate="{DataTemplate ShellTemplate:FlyoutMenuItemTemplate}"
+    MenuItemTemplate="{DataTemplate ShellTemplate:FlyoutMenuItemTemplate}"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    mc:Ignorable="d">
+
+
+
+
+<!--#region CHANGED FLYOUT ICON-->
+<!--<Shell.FlyoutIcon>
+        <FontImageSource
+            FontFamily="{StaticResource MaterialIconFont}"
+            Glyph="{x:Static FontAwesome:IconFont.FormatListBulletedSquare}"/>
+    </Shell.FlyoutIcon>-->
+<!--#endregion-->
+
+
+<!--#region SHELL RESOURCES-->
+<Shell.Resources>
+    <!--#region SHELL STYLES-->
+    <Style
+            x:Key="BaseStyle"
+            TargetType="Element"
+            ApplyToDerivedTypes="True">
+        <!--  In iOS, this property changes the color of the FlyoutIcon and the selected top tabs  -->
+        <Setter Property="Shell.ForegroundColor" Value="{DynamicResource colQua}" />
+        <!--  In iOS this property changes the color tabs upper not selected  -->
+        <Setter Property="Shell.UnselectedColor" Value="{DynamicResource colTabBarUns}" />
+            <Setter Property="Shell.BackgroundColor" Value="{DynamicResource colPrim}" />
+        <Setter Property="Shell.TitleColor" Value="{DynamicResource colQua}" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource colTabBarBack}" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource colTabBarUns}" />
+        <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource TitleColor}" />
+        
+    </Style>
+    <!--#endregion-->
+
+    <!--#region ADD TabBar FlyoutBehavior is INVISIBLE-->
+    <Style
+            BasedOn="{StaticResource BaseStyle}"
+            TargetType="TabBar"
+            ApplyToDerivedTypes="True" />
+    <!--#endregion-->
+
+    <!--#region ADD ShellItem FlyoutBehavior is VISIBLE-->
+    <Style
+            BasedOn="{StaticResource BaseStyle}"
+            TargetType="ShellItem"
+            ApplyToDerivedTypes="True" />
+    <!--#endregion-->
+
+    <!--#region ADD FlyoutItem FlyoutBehavior is VISIBLE-->
+    <Style
+            BasedOn="{StaticResource BaseStyle}"
+            TargetType="FlyoutItem"
+            ApplyToDerivedTypes="True" />
+    <!--#endregion-->
+</Shell.Resources>
+<!--#endregion-->
+    <FlyoutItem Title="Home" Icon="{StaticResource icon_fly_home}" >
+    <ShellContent  ContentTemplate="{DataTemplate view:HomePage}" />
+</FlyoutItem>
+<!--#region FLYOUT SECTOR-->
+<!--<FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent  Title="Home" Route="home" 
+                       Icon="{StaticResource icon_fly_home}"
+                       ContentTemplate="{DataTemplate view:HomePage}" />
+    </FlyoutItem>-->
+
+     <MenuItem Text="My Wallet" Command="{Binding NavigateCommand}"  CommandParameter="mywallet" IconImageSource="{StaticResource icon_fly_Wallet}"/>
+    <MenuItem Text="My Address" Command="{Binding NavigateCommand}"  CommandParameter="manageaddress" IconImageSource="{StaticResource icon_fly_address}"/>
+    <MenuItem Text="My Orders" Command="{Binding NavigateCommand}"  CommandParameter="myorders?showOrdersForDate=" IconImageSource="{StaticResource icon_fly_order}"/>
+    <MenuItem Text="Log Out" Command="{Binding LogOutCommand}" IconImageSource="{StaticResource icon_fly_Logout}"/>
+
+
+
+
+</Shell>

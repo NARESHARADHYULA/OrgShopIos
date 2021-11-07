@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:numericBox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+             Title="My Wallet"
+             BackgroundColor="{StaticResource PageBackGround}"
+             xmlns:converters="clr-namespace:TheOrganicShop.Mobile.Converters;assembly=TheOrganicShop.Mobile"
+             xmlns:helpers="clr-namespace:TheOrganicShop.Mobile.Helpers;assembly=TheOrganicShop.Mobile"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:syncTheme="clr-namespace:Syncfusion.XForms.Themes;assembly=Syncfusion.Core.XForms"
+             x:Name="walletpage"
+             x:Class="TheOrganicShop.Mobile.Views.UserWallet">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:InverseZeroVisibilityConverter x:Key="inverseZeroVisibilityConverter"/>
+            <helpers:ZeroVisibilityConverter x:Key="zeroVisibilityConverter"/>
+            <helpers:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
+            <converters:DecimalToInt x:Key="decimalToIntConverter"/>
+            <converters:BooleanToColorConverter x:Key="BoolToColorConverter" />
+            <converters:BooleanToStringConverter x:Key="BoolToStringConverter" />
+            <converters:VisibilityConverter x:Key="VisibilityConverter" />
+            <converters:IntToThicknessConverter x:Key="intToThicknessConverter" />
+            <!--<ImagePathConverter x:Key="ImagePathConverter"/>-->
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference walletpage}}" IconOverride="{StaticResource back_icon}" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid VerticalOptions="FillAndExpand">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120" />
+                    <RowDefinition Height="300" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--Balance Display section-->
+                <Frame Margin="16" BackgroundColor="White" Grid.Row="0">
+                    <StackLayout  Orientation="Horizontal" HorizontalOptions="Center">
+
+                        <StackLayout Margin="16">
+                            <Label TextColor="{StaticResource TitleColor}" HorizontalTextAlignment="Center" Text="Wallet Balance" Style="{StaticResource subheader}"/>
+                            <Label Margin="8" HorizontalTextAlignment="Center" TextColor="{StaticResource colPrim}" Style="{StaticResource subheader}"  HorizontalOptions="Center" FontAttributes="Bold" Text="{Binding UserWallet.TotalAvailableAmount, Converter={StaticResource decimalToIntConverter}}"/>
+                        </StackLayout>
+                        <StackLayout Margin="16">
+                            <BoxView WidthRequest="2" BackgroundColor="#e6f0ee"></BoxView>
+                        </StackLayout>
+                        <StackLayout Margin="16">
+                            <Label Text="Order Value" TextColor="{StaticResource TitleColor}" HorizontalTextAlignment="Center" Style="{StaticResource subheader}"/>
+                            <Label Margin="8" HorizontalTextAlignment="Center" HorizontalOptions="Center" Style="{StaticResource subheader}" FontAttributes="Bold" TextColor="{StaticResource colPrim}" Text="{Binding UserWallet.TotalBlockedAmount,Converter={StaticResource decimalToIntConverter}}"/>
+                        </StackLayout>
+
+                    </StackLayout>
+                </Frame>
+                <!--add money section-->
+                <StackLayout Margin="16" Grid.Row="1">
+                    <Label TextColor="{StaticResource TitleColor}" Style="{StaticResource subheader}" FontAttributes="Bold"  Text="Add Balance"
+                            />
+                    <Frame Margin="0,16"  BackgroundColor="{StaticResource colQua}" >
+                        <StackLayout >
+                            <inputLayout:SfTextInputLayout  Margin="16,8,16,4" ContainerType="Outlined"   Style="{StaticResource TextInputLayout}">
+                                <numericBox:SfNumericTextBox x:Name="numericTextBox"
+                                                     Value="{Binding MoneyToBeAdded, Mode=TwoWay}"
+                                                     TextColor="{StaticResource TitleColor}"
+                                                     HorizontalOptions="Fill"
+                                                     MaximumNumberDecimalDigits="0"
+                                                     Maximum="10000" FontSize="18"
+                                                     
+                                                     BorderColor="#e6f0ee" />
+                            </inputLayout:SfTextInputLayout>
+                            <StackLayout Margin="24" >
+                                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                                    <StackLayout  Orientation="Horizontal">
+                                        <Button
+                        WidthRequest      ="80"
+                        HeightRequest     ="40"
+                        Margin="2"
+                        Style="{StaticResource EllipseButtonStyle_White_Hollow}"
+                        CommandParameter="1000"
+                        Command="{Binding AddMoneyCommand}"
+                        Text="1000"/>
+                                        <Button
+                        WidthRequest      ="80"
+                        HeightRequest     ="40"
+                        Margin="2"
+                        Style="{StaticResource EllipseButtonStyle_White_Hollow}"
+                        CommandParameter="2000"
+                        Command="{Binding AddMoneyCommand}"
+                        Text="2000"/>
+                                        <Button
+                        WidthRequest      ="80"
+                        HeightRequest     ="40"
+                        Margin="2"
+                        Style="{StaticResource EllipseButtonStyle_White_Hollow}"
+                        CommandParameter="3000"
+                        Command="{Binding AddMoneyCommand}"
+                        Text="3000"/>
+                                        <Button
+                                WidthRequest      ="80"
+                                HeightRequest     ="40"
+                                Margin="2"
+                                CommandParameter="4000"
+                                Command="{Binding AddMoneyCommand}"
+                                Style="{StaticResource EllipseButtonStyle_White_Hollow}"
+                                Text="4000"/>
+                                    </StackLayout>
+                                </ScrollView>
+                            </StackLayout>
+                            <Button
+                        WidthRequest      ="140"
+                        HeightRequest     ="40"
+                        CornerRadius      ="20"
+                        HorizontalOptions="Center"
+                        Margin="0,0,0,16"
+                        BackgroundColor   ="{StaticResource colPrim}"
+                        TextColor="White"
+                        IsEnabled="{Binding DisableAddMoneyToWallet}"
+                        Command="{Binding AddMoneyToWalletCommand}"
+                        Text="Add"/>
+
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <!--action buttons-->
+                <StackLayout Margin="16,24" Grid.Row="2" VerticalOptions="Start" Orientation="Horizontal">
+                    <Frame  BackgroundColor="{StaticResource colQua}" WidthRequest="122" HeightRequest="122" >
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer  Command="{Binding OpenWalletHistoryCommand}" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                            <ImageButton Margin="4"
+                            WidthRequest ="75"
+                            HeightRequest     ="75"
+                            CornerRadius      ="40"
+                            VerticalOptions   ="Center"
+                            BackgroundColor="{StaticResource RoundedIconBackGround}"
+                            HorizontalOptions ="Center"
+                            Source="{StaticResource icon_tab_wallettx}"
+                            Command="{Binding OpenWalletHistoryCommand}"
+                    />
+                            <Label Margin="4" TextColor="{StaticResource TitleColor}" Text="Transactions" HorizontalTextAlignment="Center" Style="{StaticResource subheader}"></Label>
+                        </StackLayout>
+                    </Frame>
+                    <Frame  BackgroundColor="{StaticResource colQua}" WidthRequest="122" HeightRequest="122" Margin="8,0,0,0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer  Command="{Binding ViewOrdersCommand}" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                            <ImageButton Margin="4"
+                            WidthRequest ="75"
+                            HeightRequest     ="75"
+                            CornerRadius      ="40"
+                            Command="{Binding ViewOrdersCommand}"
+                            VerticalOptions   ="Center"
+                            BackgroundColor="{StaticResource RoundedIconBackGround}"
+                            HorizontalOptions ="Center"
+                            Source="{StaticResource icon_tab_userorders}"
+
+                    />
+                            <Label Margin="4" TextColor="{StaticResource TitleColor}" HorizontalTextAlignment="Center" Text="Orders" Style="{StaticResource subheader}"></Label>
+                        </StackLayout>
+                    </Frame>
+                    <Frame  BackgroundColor="{StaticResource colQua}" WidthRequest="122" HeightRequest="122" Margin="8,0,0,0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer  Command="{Binding ViewOrdersCommand}" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                            <ImageButton Margin="4"
+                            WidthRequest ="75"
+                            HeightRequest     ="75"
+                            CornerRadius      ="40"
+                            VerticalOptions   ="Center"
+                            BackgroundColor="{StaticResource RoundedIconBackGround}"
+                            HorizontalOptions ="Center"
+                            Source="{StaticResource icon_tab_help}"
+                            Command="{Binding ViewOrdersCommand}"
+                    />
+                            <Label Margin="4" TextColor="{StaticResource TitleColor}" HorizontalTextAlignment="Center" Text="Complaints" Style="{StaticResource subheader}"></Label>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

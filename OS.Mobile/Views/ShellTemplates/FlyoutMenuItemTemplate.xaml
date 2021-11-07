@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout
+    x:Class="TheOrganicShop.Mobile.Views.ShellTemplates.FlyoutMenuItemTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+   
+    <StackLayout Orientation="Horizontal">
+    <Image
+        Margin="10"
+       WidthRequest="22" HeightRequest="22" HorizontalOptions="Start" VerticalOptions="Center"
+        Source="{Binding Icon}" />
+    <Label
+       
+        Text="{Binding Title}"
+        VerticalOptions="Center"
+        TextColor="{StaticResource TitleColor}"
+        Style="{StaticResource TxtH5Flyout_1}" />
+    </StackLayout>
+
+</StackLayout>

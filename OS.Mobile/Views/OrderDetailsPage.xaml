@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             BackgroundColor="{StaticResource PageBackGround}"
+             xmlns:xForms1="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             Title="Order Items"
+             xmlns:converters="clr-namespace:TheOrganicShop.Mobile.Converters;assembly=TheOrganicShop.Mobile"
+             xmlns:helpers="clr-namespace:TheOrganicShop.Mobile.Helpers;assembly=TheOrganicShop.Mobile"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
+             x:Name="orderdetails"
+             x:Class="TheOrganicShop.Mobile.Views.OrderDetailsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:InverseZeroVisibilityConverter x:Key="inverseZeroVisibilityConverter"/>
+            <helpers:ZeroVisibilityConverter x:Key="zeroVisibilityConverter"/>
+            <helpers:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
+            <converters:DecimalToInt x:Key="decimalToIntConverter"/>
+            <converters:BooleanToColorConverter x:Key="BoolToColorConverter" />
+            <converters:BooleanToStringConverter x:Key="BoolToStringConverter" />
+            <converters:VisibilityConverter x:Key="VisibilityConverter" />
+            <converters:IntToThicknessConverter x:Key="intToThicknessConverter" />
+            <converters:SourceConverter x:Key="SourceConverter" />
+            <!--<ImagePathConverter x:Key="ImagePathConverter"/>-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="{StaticResource back_icon}" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame HasShadow="True" Margin="0,0,2,0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeightRequest="100"  BackgroundColor="{StaticResource colQua}">
+
+                <StackLayout>
+                    <StackLayout Margin="24,8,0,0"  VerticalOptions="Center">
+                        <StackLayout Orientation="Horizontal">
+                            <Label  Text="Order Reference : "   TextColor="{StaticResource TitleColor}" FontAttributes="bold"  FontSize="16"   ></Label>
+                            <Label  Text="{Binding OrderRefrenceId}" Style="{StaticResource TxtHeader}"  TextColor="{StaticResource TitleColor}"  FontSize="16"   ></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label  Text="Order Date : "   TextColor="{StaticResource TitleColor}" FontAttributes="bold"  FontSize="16"   ></Label>
+                            <Label  Text="{Binding OrderedForDate}" Style="{StaticResource TxtHeader}"  TextColor="{StaticResource TitleColor}"  FontSize="16"   ></Label>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label  Text="Order Status : "   TextColor="{StaticResource TitleColor}" FontAttributes="bold"  FontSize="16"   ></Label>
+                            <Label  Text="{Binding OrderStatus}" Style="{StaticResource TxtHeader}"  TextColor="{StaticResource TitleColor}"  FontSize="16"   ></Label>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <Button
+                        BackgroundColor="{StaticResource colQua}"  
+                        IsVisible="{Binding EnableOrderDelete}"
+                        Command="{Binding Path=BindingContext.DeleteOrderCommand, Source={x:Reference Name=orderdetails}}"
+                        HeightRequest="40"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="Center"
+                        Margin="0,-24,12,0"
+                        TextColor="#FE8C01"
+                        BorderColor="#FE8C01"
+                        BorderWidth="{OnPlatform iOS=0,Android=1}"
+                        Text="Remove"/>
+                </StackLayout>
+        </Frame>
+            <shimmer:SfShimmer x:Name="shimmer"  Grid.Row="1"   VerticalOptions="Start" 
+                                IsActive="{Binding BindingContext.IsLoading, Source={x:Reference Name=orderdetails}}">
+                <shimmer:SfShimmer.CustomView>
+                    <Grid
+                    Padding="10"
+                    ColumnSpacing="15"
+                    RowSpacing="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80" />
+                            <RowDefinition Height="80" />
+                            <RowDefinition Height="80" />
+                            <RowDefinition Height="80" />
+                        </Grid.RowDefinitions>
+
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="0"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="2"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="3"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+
+
+                    </Grid>
+                </shimmer:SfShimmer.CustomView>
+                <shimmer:SfShimmer.Content>
+            <xForms:SfListView
+                Margin="8"
+                x:Name="Orders"
+                Orientation="Vertical"
+                AutoFitMode="Height"
+                ItemSpacing="2"
+                SelectionMode="None"
+                ItemsSource="{Binding OrderDetailItems}">
+                <xForms:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="4" BackgroundColor="{StaticResource colQua}" HasShadow="True">
+                            <StackLayout HorizontalOptions="Fill">
+                                <StackLayout Margin="8"   Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                    <ffimageloading:CachedImage
+                                                        Margin="4"
+                                                            Source="{Binding ImageUri, Converter={StaticResource SourceConverter}}"
+                                                            ErrorPlaceholder="imageplaceholder.png"
+                                                            LoadingPlaceholder="imageplaceholder.png"
+                                                            Aspect="AspectFill"
+                                                            CacheDuration="1"
+                                                           HeightRequest="{OnIdiom Phone=80,
+                                                                Tablet=240,
+                                                                Desktop=120}"
+                                        WidthRequest="{OnIdiom Phone=80,
+                                                               Tablet=224,
+                                                               Desktop=200}"
+                                                            />
+                                    <StackLayout Margin="8,4,4,4" VerticalOptions="StartAndExpand">
+                                        <Label  Text="{Binding ProductName}" Style="{StaticResource TxtHeader}" HorizontalOptions="StartAndExpand" TextColor="#333333"    FontSize="14"  ></Label>
+                                        <Label  Text="{Binding Quantity, StringFormat='Quantity {0}'}" HorizontalOptions="StartAndExpand" TextColor="{StaticResource TitleColor}"  FontSize="14"  ></Label>
+                                        <Label  Text="{Binding AppliedWeight}" HorizontalOptions="StartAndExpand" TextColor="{StaticResource TitleColor}"    FontSize="14"  ></Label>
+                                        <Label  Text="{Binding AppliedPrice,Converter={StaticResource decimalToIntConverter}}" FontAttributes="Bold" HorizontalOptions="Start" Style="{StaticResource TxtHeader}" TextColor="#333333"  FontSize="16"  ></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout HeightRequest="60"  Orientation="Horizontal"   HorizontalOptions="Fill" >
+
+                                    <Label Margin="12,0,0,0"  Text="{Binding DetailStatus}" VerticalOptions="Center"   FontAttributes="Bold" HorizontalOptions="StartAndExpand" TextColor="#333333" FontSize="16" />
+                                   
+                                    <Button
+                        BackgroundColor="{StaticResource colQua}"  
+                        IsVisible="{Binding EnableDelete}"
+                        Command="{Binding Path=BindingContext.DeleteOrderDetailsCommand, Source={x:Reference Name=orderdetails}}"
+                        CommandParameter="{Binding .}"
+                        HeightRequest="40"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="Center"
+                        Margin="0,0,12,0"
+                        TextColor="#FE8C01"
+                        BorderWidth="{OnPlatform iOS=0,Android=1}"
+                        BorderColor="#FE8C01"
+                        Text="Remove"/>
+                                   
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                       
+                    </DataTemplate>
+                </xForms:SfListView.ItemTemplate>
+
+
+
+            </xForms:SfListView>
+                </shimmer:SfShimmer.Content>
+            </shimmer:SfShimmer>
+            
+           
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

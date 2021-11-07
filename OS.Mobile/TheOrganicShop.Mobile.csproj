@@ -1,0 +1,188 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Behaviors\SfComboBoxDropDownBehavior.cs" />
+    <Compile Remove="Helpers\PaymentTemplateSelector.cs" />
+    <Compile Remove="Styles\Styles.xaml.cs" />
+    <Compile Remove="Views\AddMoneyToWalletPage.xaml.cs" />
+    <Compile Remove="Views\PriceDetailView.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Styles\Styles.xaml" />
+    <EmbeddedResource Remove="Views\AddMoneyToWalletPage.xaml" />
+    <EmbeddedResource Remove="Views\PriceDetailView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Images\emptycart.jpg" />
+    <None Remove="Images\EmptyCart.svg" />
+    <None Remove="Images\imageplaceholder.png" />
+    <None Remove="Images\Otp.svg" />
+    <None Remove="Images\PaymentSuccess.svg" />
+    <None Remove="Images\Placeholder.png" />
+    <None Remove="Images\stopwatch.svg" />
+    <None Remove="MockData\orgshop.json" />
+    <None Remove="Resources\Fonts\CustomIconFont.ttf" />
+    <None Remove="Resources\Fonts\materialdesignicons-webfont.ttf" />
+    <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
+    <None Remove="Paytm.AllInOneSdk" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\emptycart.jpg" />
+    <EmbeddedResource Include="Images\EmptyCart.svg" />
+    <EmbeddedResource Include="Images\imageplaceholder.png" />
+    <EmbeddedResource Include="Images\Otp.svg" />
+    <EmbeddedResource Include="Images\PaymentSuccess.svg" />
+    <EmbeddedResource Include="Images\stopwatch.svg" />
+    <EmbeddedResource Include="MockData\orgshop.json" />
+    <EmbeddedResource Include="Resources\Fonts\CustomIconFont.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\materialdesignicons-webfont.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\MaterialIcons-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.2.0.534" />
+    <PackageReference Include="ExpandableView" Version="1.0.10" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.13" />
+    <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
+    <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.3" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.3.0.44" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.7638" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Xamarin.Forms.DebugRainbows" Version="1.1.4" />
+    <PackageReference Include="Paytm.AllInOneSdk" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OS.Models\TheOrganicShop.Models.csproj" />
+    <ProjectReference Include="..\OS.Tools\TheOrganicShop.Tools.csproj" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <EmbeddedResource Update="AppShell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\General.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\Icons.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\Spaces.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\Texts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\Themes\DarkTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\Themes\WhiteTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AddressForm.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CheckOutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DeliveryAreaVerification.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LoaderPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyAddresses.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OrderCalenderPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OrderDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OrderPlaced.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProductDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ReusableViews\CalenderView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ShellTemplates\FlyoutHeaderTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ShellTemplates\FlyoutItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ShellTemplates\FlyoutMenuItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\UserWaiting.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\UserWalletTransactionsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\UserOrders.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\UserRegistration.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\UserWallet.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Adaptors\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Placeholder.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\UserWalletTransactionsPage.xaml.cs">
+      <DependentUpon>UserWalletTransactionsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

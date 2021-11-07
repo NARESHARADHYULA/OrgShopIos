@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:behaviors="clr-namespace:TheOrganicShop.Mobile.Behaviors;assembly=TheOrganicShop.Mobile"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:xForms1="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:converters="clr-namespace:TheOrganicShop.Mobile.Converters;assembly=TheOrganicShop.Mobile"
+             xmlns:helpers="clr-namespace:TheOrganicShop.Mobile.Helpers;assembly=TheOrganicShop.Mobile"
+             BackgroundColor="{StaticResource PageBackGround}"
+             x:Class="TheOrganicShop.Mobile.Views.UserWalletTransactionsPage"
+             x:Name="wallethistory"
+             Title="Wallet History">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:InverseZeroVisibilityConverter x:Key="inverseZeroVisibilityConverter"/>
+            <helpers:ZeroVisibilityConverter x:Key="zeroVisibilityConverter"/>
+            <helpers:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
+            <converters:DecimalToInt x:Key="decimalToIntConverter"/>
+            <converters:BooleanToColorConverter x:Key="BoolToColorConverter" />
+            <converters:BooleanToStringConverter x:Key="BoolToStringConverter" />
+            <converters:VisibilityConverter x:Key="VisibilityConverter" />
+            <converters:IntToThicknessConverter x:Key="intToThicknessConverter" />
+            <!--<ImagePathConverter x:Key="ImagePathConverter"/>-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference wallethistory}}" IconOverride="{StaticResource back_icon}" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+        <StackLayout >
+            <xForms:SfListView
+                x:Name="Orders"
+                Orientation="Vertical"
+                SelectionMode="None"
+                ItemSize="100"
+                ItemsSource="{Binding UserWalletTransactions}"
+            >
+                <xForms:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="12" BackgroundColor="{StaticResource colQua}">
+                            <StackLayout Margin="8" VerticalOptions="Center">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Padding="2" Margin="8,0,0,0" FontSize="16" Text="{Binding TransactionDate , StringFormat='Initiated on {0}'}"  TextColor="{StaticResource TitleColor}" ></Label>
+                                    <Label Padding="2" Text="{Binding TransactionStatus}" Margin="0,0,8,0" TextColor="{StaticResource colPrim}" FontAttributes="Bold" HorizontalOptions="EndAndExpand"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label  Padding="2"  Margin="8,0,0,0" FontSize="16" Text="{Binding TransactionType,StringFormat='Transaction Type: {0}'}" TextColor="{StaticResource TitleColor}" ></Label>
+                                    <Label Padding="2" Text="{Binding Amount, Converter={StaticResource decimalToIntConverter}}" Margin="0,0,8,0" TextColor="{StaticResource colPrim}" FontAttributes="Bold" HorizontalOptions="EndAndExpand"></Label>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </xForms:SfListView.ItemTemplate>
+
+                <!--  Layout to customize no. of columns in SfListView  -->
+                <xForms:SfListView.LayoutManager>
+                    <xForms:GridLayout
+                        SpanCount="{core:OnPlatformOrientationIntValue Desktop=4, PhonePortrait=1, PhoneLandscape=1, TabletPortrait=3, TabletLandscape=4}" />
+                </xForms:SfListView.LayoutManager>
+
+            </xForms:SfListView>
+            
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

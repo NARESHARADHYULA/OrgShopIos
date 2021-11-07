@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:local="clr-namespace:TheOrganicShop.Mobile.Behaviors"
+             x:Class="TheOrganicShop.Mobile.Views.ReusableViews.CalenderView"
+             x:Name="calendercontrol">
+    <StackLayout>
+        <BoxView  HeightRequest="1" BackgroundColor="{DynamicResource Gray-200}"/>
+        <Frame BackgroundColor="{StaticResource colQua}" VerticalOptions="FillAndExpand" HorizontalOptions="Center" >
+            <StackLayout VerticalOptions="Fill">
+                <xForms:SfListView
+                x:Name="calender"
+                SelectionBackgroundColor="{StaticResource colPrim}"
+                ItemSpacing="6"
+                Orientation="Horizontal"
+                IsScrollBarVisible="False"
+                HeightRequest="100"
+                VerticalOptions="Center"
+                ItemSize="50"
+                SelectedItem="{Binding  SelectedCalenderDate, Mode=TwoWay}"
+                ItemsSource="{Binding CalenderObject}">
+                    <xForms:SfListView.Behaviors>
+                        <local:ListViewLoaded Command="{Binding Path=BindingContext.ListViewLoadedCommand, Source={x:Reference calendercontrol}}"/>
+                        <local:CalenderViewBehaviour Command="{Binding Path=BindingContext.DateSelectedCommand, Source={x:Reference calendercontrol}}"/>
+                    </xForms:SfListView.Behaviors>
+                    <xForms:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label HorizontalOptions="Center"  FontSize="16" TextColor="{Binding LabelTextColor}" Style="{StaticResource TxtHeader}"  FontAttributes="Bold" Text="{Binding DayShortName}"></Label>
+                                <Label HorizontalOptions="Center"  FontSize="16" TextColor="{Binding LabelTextColor}" Style="{StaticResource TxtHeader}"  FontAttributes="Bold" Text="{Binding Day}"></Label>
+                                <Label HorizontalOptions="Center"  FontSize="16" TextColor="{Binding LabelTextColor}" Style="{StaticResource TxtHeader}"   FontAttributes="Bold" Text="{Binding MonthShortName}"></Label>
+                            </StackLayout>
+                        </DataTemplate>
+                    </xForms:SfListView.ItemTemplate>
+                </xForms:SfListView>
+            </StackLayout>
+        </Frame>
+        <BoxView  HeightRequest="1" BackgroundColor="{DynamicResource Gray-200}"/>
+    </StackLayout>
+</StackLayout>

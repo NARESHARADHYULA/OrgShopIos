@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="TheOrganicShop.Mobile.Styles.Themes.WhiteTheme"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    Source="/Styles/General.xaml"
+    mc:Ignorable="d">
+
+
+
+    <!--#region Color Range-->
+    <Color x:Key="colPrim">#40AA54</Color>
+    <!--<Color x:Key="colPrim">ForestGreen</Color>-->
+    <Color x:Key="colSec">#96d9a2</Color>
+    <Color x:Key="colTer">#FF56565A</Color>
+    <Color x:Key="colQua">#FFFFFFFF</Color>
+    <Color x:Key="colQui">#FF000000</Color>
+    <Color x:Key="Transparent">Transparent</Color>
+    
+    <!--#endregion-->
+
+    <!--#region Backgroundcolors-->
+    <Color x:Key="colBG1">#FFFFFFFF</Color>
+    <Color x:Key="colBG2">#FFF5F8FB</Color>
+   
+    
+    <!--#region -->
+    <Color x:Key="TitleColor">#FF56565A</Color>
+    <!--#endregion-->
+
+    <!--#region List View Selection Background Color-->
+    <Color x:Key="CalenderItemSelection">LightGray</Color>
+    <Color x:Key="BackgroundColor">LightGray</Color>
+    <Color x:Key="RoundedIconBackGround">#e6f0ee</Color>
+    <Color x:Key="PageBackGround">WhiteSmoke</Color>
+    <!--#endregion-->
+
+    <!--#region Entry Colors-->
+    <Color x:Key="colAccCheck">#FFE7F9F5</Color>
+    <Color x:Key="colAccError">#FFF9E7EB</Color>
+    <Color x:Key="colAccUns">#FFF2F3F5</Color>
+    <Color x:Key="colUnsPrim">#FFC7CAD1</Color>
+    <Color x:Key="colAltQua">#FFE3E7EF</Color>
+    <!--#endregion-->
+
+    <!--#region Border Colors-->
+    <Color x:Key="colBorCheck">#FF10CA87</Color>
+    <Color x:Key="colBorError">#FFCA1030</Color>
+    <!--#endregion-->
+
+    <!--#region Remark Colors-->
+    <Color x:Key="colRemPrim">#FFF93963</Color>
+    <Color x:Key="colRemSec">#FFD4145C</Color>
+    <!--#endregion-->
+
+    <!--#region Surface Colors-->
+    <Color x:Key="colSurf1">#FFFFFFFF</Color>
+    <Color x:Key="colSurf2">#FFFFFFFF</Color>
+    <!--#endregion-->
+
+    <!--#region Shell Colors-->
+    <Color x:Key="colTabBarUns">#FF96969A</Color>
+    <Color x:Key="colTabBarBack">#FFFFFFFF</Color>
+    <!--#endregion-->
+
+    <x:String x:Key="Cart">&#xe708;</x:String>
+    <Style x:Key="Navigation" TargetType="NavigationPage">
+        <Setter Property="BarTextColor" Value="{DynamicResource colAltQua}" />
+    </Style>
+
+    <!--  Common style for icon buttons  -->
+    <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="FontFamily" Value="{StaticResource Roboto-Medium}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+    </Style>
+
+    <Style x:Key="FlatButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="FontFamily" Value="{StaticResource Roboto-Medium}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+    </Style>
+
+    <Style x:Key="RoundedButtonStyle" TargetType="Button">
+        <Setter Property="TextColor" Value="{StaticResource colQua}" />
+        <Setter Property="FontFamily" Value="{StaticResource Roboto-Medium}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource colPrim}" />
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="60" />
+        <Setter Property="WidthRequest" Value="60" />
+        <Setter Property="CornerRadius" Value="30" />
+    </Style>
+    <Style x:Key="EllipseButtonStyle" TargetType="Button">
+        <Setter Property="TextColor" Value="{StaticResource colQua}" />
+        <Setter Property="FontFamily" Value="{StaticResource Roboto-Medium}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource colPrim}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource colPrim}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="#332196F3" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <Style x:Key="EllipseButtonStyle_White" TargetType="Button">
+        <Setter Property="TextColor" Value="{StaticResource colPrim}" />
+        <Setter Property="FontFamily" Value="{StaticResource Roboto-Medium}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource colQua}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="CornerRadius" Value="20" />
+    </Style>
+
+    <Style x:Key="EllipseButtonStyle_White_Hollow" TargetType="Button">
+        <Setter Property="TextColor" Value="{StaticResource colPrim}" />
+        <Setter Property="FontFamily" Value="{StaticResource Roboto-Medium}" />
+        <Setter Property="BorderColor" Value="{StaticResource colPrim}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource colQua}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="CornerRadius" Value="20" />
+    </Style>
+
+    <Style x:Key="AutoComplete" TargetType="autocomplete:SfAutoComplete">
+        <Setter Property="MultiSelectMode" Value="None" />
+        <Setter Property="TextColor" Value="{StaticResource TitleColor}" />
+        <Setter Property="NoResultsFoundTextColor" Value="{StaticResource TitleColor}" />
+        <Setter Property="DropDownTextColor" Value="{StaticResource TitleColor}" />
+        <Setter Property="HighlightedTextColor" Value="{StaticResource TitleColor}" />
+        <Setter Property="IndicatorTextColor" Value="{StaticResource TitleColor}" />
+        <Setter Property="NoResultsFoundText" Value="No Results Found" />
+        <Setter Property="AutoCompleteMode" Value="Suggest" />
+        <Setter Property="SuggestionBoxPlacement" Value="Top" />
+        <Setter Property="ShowSuggestionsOnFocus" Value="True" />
+        <Setter Property="FontFamily" Value="{StaticResource Roboto-Medium}" />
+        <Setter Property="NoResultsFoundFontFamily" Value="{StaticResource Roboto-Medium}" />
+        <Setter Property="DropDownItemFontFamily" Value="{StaticResource Roboto-Medium}" />
+        <Setter Property="IndicatorFontFamily" Value="{StaticResource Roboto-Medium}" />
+        
+        
+    </Style>
+    
+    <Style x:Key="TextInputLayout" TargetType="inputLayout:SfTextInputLayout">
+        <Setter Property="FocusedColor" Value="{StaticResource colPrim}" />
+        <Setter Property="ContainerType" Value="Outlined" />
+        <Setter Property="ReserveSpaceForAssistiveLabels" Value="True" />
+        
+    </Style>
+
+    <Style x:Key="TextInput" TargetType="Entry">
+        <Setter Property="FontFamily" Value="Roboto-Medium" />
+        <Setter Property="TextColor" Value="{StaticResource TitleColor}" />
+    </Style>
+
+    <Style x:Key="BottomBar" TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="{StaticResource colPrim}" />
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="VerticalOptions" Value="EndAndExpand" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="HeightRequest" Value="75" />
+        
+    </Style>
+       <Style x:Key="TopBar" TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="{StaticResource colPrim}" />
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="VerticalOptions" Value="StartAndExpand" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="HeightRequest" Value="75" />
+
+    </Style>
+    
+    <Style x:Key="subheader" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource TitleColor}" />
+        <Setter Property="FontFamily" Value="{StaticResource Roboto-Medium}" />
+    </Style>
+</ResourceDictionary>

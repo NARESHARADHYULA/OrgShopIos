@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
+             BackgroundColor="{StaticResource PageBackGround}"
+             Title="Manage Address"
+             x:Name="manageaddress"
+             x:Class="TheOrganicShop.Mobile.Views.MyAddresses">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior 
+                            IconOverride="{StaticResource back_icon}" />
+    </Shell.BackButtonBehavior>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label HorizontalOptions="EndAndExpand" Text="+ADD NEW ADDRESS"  FontAttributes="Bold" Margin="8"
+                   TextColor="{StaticResource colPrim}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding AddAddressCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <shimmer:SfShimmer x:Name="shimmer" VerticalOptions="Start" Type="Shopping"
+                                IsActive="{Binding BindingContext.IsLoading, Source={x:Reference Name=manageaddress}}">
+                <shimmer:SfShimmer.CustomView>
+                    <Grid
+                    Padding="10"
+                    ColumnSpacing="15"
+                    RowSpacing="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="120" />
+                            <RowDefinition Height="120" />
+                            <RowDefinition Height="120" />
+                            <RowDefinition Height="120" />
+                        </Grid.RowDefinitions>
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="0"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+
+
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="2"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+                        <BoxView BackgroundColor="LightCyan"
+                             Grid.Row="3"
+                             Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand"
+                              />
+
+
+                    </Grid>
+                </shimmer:SfShimmer.CustomView>
+                <shimmer:SfShimmer.Content>
+                    <xForms:SfListView
+                x:Name="Orders"
+                Orientation="Vertical"
+                ItemSize="230"
+                SelectionMode="None"
+                ItemsSource="{Binding UserAddress}"
+             >
+
+                <xForms:SfListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Frame HasShadow="True"
+                               BackgroundColor="{StaticResource colQua}"
+                                   Margin="16"
+                                   Padding="4"
+                                   CornerRadius="4">
+                            <StackLayout VerticalOptions="Center">
+                                <StackLayout VerticalOptions="Center"  Margin="24,0,24,0" >
+                                    <Label  Text="{Binding UserName}" TextColor="{StaticResource TitleColor}" FontAttributes="Bold" Padding="1"></Label>
+                                            <Label  Text="{Binding Email}" TextColor="{StaticResource TitleColor}" Padding="1"></Label>
+                                            <Label  Text="{Binding ApartmentName}" TextColor="{StaticResource TitleColor}" Padding="1"></Label>
+                                            <Label  Text="{Binding Address}" TextColor="{StaticResource TitleColor}" Padding="1"></Label>
+                                            <Label  Text="{Binding AreaName}" TextColor="{StaticResource TitleColor}" Padding="1"></Label>
+                                </StackLayout>
+                                <StackLayout VerticalOptions="EndAndExpand" Margin="24,0,24,0">
+                                    <BoxView HeightRequest="2" BackgroundColor="{StaticResource RoundedIconBackGround}"></BoxView>
+                                    <StackLayout Orientation="Horizontal"  Margin="0,16,0,8" VerticalOptions="Center" HorizontalOptions="End">
+                                        <Label Text="Edit" FontSize="16"  FontAttributes="Bold" Padding="16,0,16,0"
+                                        TextColor="{StaticResource colPrim}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer CommandParameter="{Binding .}"  Command="{Binding BindingContext.EditAddressCommand,Source={x:Reference Name=Orders}}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </xForms:SfListView.ItemTemplate>
+
+                <!--  Layout to customize no. of columns in SfListView  -->
+                <xForms:SfListView.LayoutManager>
+                    <xForms:GridLayout
+                        SpanCount="{core:OnPlatformOrientationIntValue Desktop=4, PhonePortrait=1, PhoneLandscape=1, TabletPortrait=3, TabletLandscape=4}" />
+                </xForms:SfListView.LayoutManager>
+
+            </xForms:SfListView>
+                </shimmer:SfShimmer.Content>
+            </shimmer:SfShimmer>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

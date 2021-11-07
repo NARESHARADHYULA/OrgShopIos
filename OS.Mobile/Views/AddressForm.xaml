@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TheOrganicShop.Mobile.Behaviors;assembly=TheOrganicShop.Mobile"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:local1="clr-namespace:TheOrganicShop.Mobile.Extensions"
+             x:Class="TheOrganicShop.Mobile.Views.AddressForm"
+             Title="Manage Address"
+             BackgroundColor="{StaticResource PageBackGround}"
+             x:Name="addressform">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="{StaticResource back_icon}" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView Orientation="Vertical">
+                <StackLayout VerticalOptions="CenterAndExpand" Margin="32,16,16,32">
+
+                    <inputLayout:SfTextInputLayout Hint="City" HelperText="start typing for city suggestions" Style="{StaticResource TextInputLayout}">
+                        <inputLayout:SfTextInputLayout.Triggers>
+                            <DataTrigger TargetType="inputLayout:SfTextInputLayout" 
+                             Binding="{Binding Source={x:Reference cityentry},Path=Text.Length}" 
+                             Value="0">
+                                <Setter Property="HasError" Value="True"/>
+                                <Setter Property="ErrorText" Value="City is empty"/>
+                            </DataTrigger>
+                        </inputLayout:SfTextInputLayout.Triggers>
+                        <local1:CustomAutoComplete x:Name="cityentry" Style="{StaticResource AutoComplete}" DisplayMemberPath="Name" DataSource="{Binding Cities}" SelectedItem="{Binding SelectedCity}">
+                            <local1:CustomAutoComplete.Behaviors>
+                                <local:SelectionChangedBehavior Command="{Binding Path=BindingContext.OnCitySelecetedCommand, Source={x:Reference addressform}}"/>
+                            </local1:CustomAutoComplete.Behaviors>
+                        </local1:CustomAutoComplete>
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Hint="Pincode" HelperText="start typing for pincode suggestions"  Style="{StaticResource TextInputLayout}">
+                        <inputLayout:SfTextInputLayout.Triggers>
+                            <DataTrigger TargetType="inputLayout:SfTextInputLayout" 
+                             Binding="{Binding Source={x:Reference areaentry},Path=Text.Length}" 
+                             Value="0">
+                                <Setter Property="HasError" Value="True"/>
+                                <Setter Property="ErrorText" Value="Pincode is empty"/>
+                            </DataTrigger>
+                        </inputLayout:SfTextInputLayout.Triggers>
+                        <local1:CustomAutoComplete x:Name="pincodeentry" Style="{StaticResource AutoComplete}" DisplayMemberPath="Code"  DataSource="{Binding PinCodes}" SelectedItem="{Binding SelectedPinCode}">
+                            <local1:CustomAutoComplete.Behaviors>
+                                <local:SelectionChangedBehavior Command="{Binding Path=BindingContext.OnPinCodeSelectedCommand, Source={x:Reference addressform}}"/>
+                            </local1:CustomAutoComplete.Behaviors>
+                        </local1:CustomAutoComplete>
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Hint="Area" HelperText="start typing for area suggestions"   Style="{StaticResource TextInputLayout}">
+                        <inputLayout:SfTextInputLayout.Triggers>
+                            <DataTrigger TargetType="inputLayout:SfTextInputLayout" 
+                             Binding="{Binding Source={x:Reference areaentry},Path=Text.Length}" 
+                             Value="0">
+                                <Setter Property="HasError" Value="True"/>
+                                <Setter Property="ErrorText" Value="Area is empty"/>
+                            </DataTrigger>
+                        </inputLayout:SfTextInputLayout.Triggers>
+                        <local1:CustomAutoComplete x:Name="areaentry" Style="{StaticResource AutoComplete}"  DisplayMemberPath="Name"  DataSource="{Binding AreaNames}" SelectedItem="{Binding SelectedArea}">
+                            <local1:CustomAutoComplete.Behaviors>
+                                <local:SelectionChangedBehavior Command="{Binding Path=BindingContext.OnAreaSelectedCommand, Source={x:Reference addressform}}"/>
+                            </local1:CustomAutoComplete.Behaviors>
+                        </local1:CustomAutoComplete>
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout
+                        Hint="Name"
+                        Style="{StaticResource TextInputLayout}">
+                        <inputLayout:SfTextInputLayout.Triggers>
+                            <DataTrigger TargetType="inputLayout:SfTextInputLayout" 
+                             Binding="{Binding Source={x:Reference nameentry},Path=Text.Length}" 
+                             Value="0">
+                                <Setter Property="HasError" Value="True"/>
+                                <Setter Property="ErrorText" Value="Name is empty"/>
+                            </DataTrigger>
+                        </inputLayout:SfTextInputLayout.Triggers>
+                        <local1:CustomEntry x:Name="nameentry" Text="{Binding CreateOrEditUserAddress.UserName, Mode=TwoWay}"/>
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout
+                        Hint="Email"  Style="{StaticResource TextInputLayout}">
+                        <inputLayout:SfTextInputLayout.Triggers>
+                            <DataTrigger TargetType="inputLayout:SfTextInputLayout" 
+                             Binding="{Binding Source={x:Reference emailentry},Path=Text.Length}" 
+                             Value="0">
+                                <Setter Property="HasError" Value="True"/>
+                                <Setter Property="ErrorText" Value="Email is empty"/>
+                            </DataTrigger>
+                        </inputLayout:SfTextInputLayout.Triggers>
+                        <local1:CustomEntry x:Name="emailentry"  Text="{Binding CreateOrEditUserAddress.Email, Mode=TwoWay}"/>
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout Hint="Appartment Name"  Style="{StaticResource TextInputLayout}">
+                        <inputLayout:SfTextInputLayout.Triggers>
+                            <DataTrigger TargetType="inputLayout:SfTextInputLayout" 
+                             Binding="{Binding Source={x:Reference appartmententry},Path=Text.Length}" 
+                             Value="0">
+                                <Setter Property="HasError" Value="True"/>
+                                <Setter Property="ErrorText" Value="Appartment Name is empty"/>
+                            </DataTrigger>
+                        </inputLayout:SfTextInputLayout.Triggers>
+                        <local1:CustomEntry x:Name="appartmententry" Text="{Binding CreateOrEditUserAddress.ApartmentName,Mode=TwoWay}"/>
+                    </inputLayout:SfTextInputLayout>
+
+                    <inputLayout:SfTextInputLayout Hint="Address"  Style="{StaticResource TextInputLayout}">
+                        <inputLayout:SfTextInputLayout.Triggers>
+                            <DataTrigger TargetType="inputLayout:SfTextInputLayout"  
+                             Binding="{Binding Source={x:Reference addressentry},Path=Text.Length}" 
+                             Value="0">
+                                <Setter Property="HasError" Value="True"/>
+                                <Setter Property="ErrorText" Value="Address is empty"/>
+                            </DataTrigger>
+                        </inputLayout:SfTextInputLayout.Triggers>
+                        <local1:CustomEntry x:Name="addressentry" Text="{Binding CreateOrEditUserAddress.Address,Mode=TwoWay}"/>
+                    </inputLayout:SfTextInputLayout>
+
+                </StackLayout>
+
+            </ScrollView>
+            <StackLayout VerticalOptions="End">
+                <Button
+                        WidthRequest      ="100"
+                        HeightRequest     ="40"
+                        HorizontalOptions="End"
+                        Margin="0,0,24,0"
+                        Style="{StaticResource EllipseButtonStyle}"
+                        Command="{Binding AddAddressCommand}"
+                        Text="Save"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

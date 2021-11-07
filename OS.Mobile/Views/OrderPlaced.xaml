@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:TheOrganicShop.Mobile.Controls;assembly=TheOrganicShop.Mobile"
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="{StaticResource PageBackGround}"
+             Shell.NavBarIsVisible="False"
+             x:Class="TheOrganicShop.Mobile.Views.OrderPlaced">
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
+            <StackLayout  VerticalOptions="Center" HorizontalOptions="Center" Spacing="0" >
+
+                <controls:SVGImage
+                    Margin="0,10,0,0"
+                    HeightRequest="120"
+                    Source="PaymentSuccess.svg"
+                    WidthRequest="120" />
+
+                <Label Margin="8"  Text="Your order has been placed." FontSize="Large" TextColor="{StaticResource TitleColor}" Style="{StaticResource TxtHeader}" HorizontalOptions="Center"/>
+                <Frame  Margin="8" HasShadow="True" CornerRadius="8" BackgroundColor="{StaticResource colPrim}" HeightRequest="50" WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" >
+                    <Button Clicked="goToOrders_Command" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="50" WidthRequest="200"  BackgroundColor="{StaticResource colPrim}" FontAttributes="Bold" FontSize="18"  TextColor="{StaticResource colQua}" Text="View Orders" />
+                </Frame>
+                <Frame  Margin="8" HasShadow="True" CornerRadius="8" BackgroundColor="{StaticResource colPrim}" HeightRequest="50" WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" >
+                    <Button Clicked="goToHome_Command"  VerticalOptions="Center" HorizontalOptions="Center"  HeightRequest="50" WidthRequest="200"  BackgroundColor="{StaticResource colPrim}" FontAttributes="Bold" FontSize="18" CornerRadius="8" TextColor="{StaticResource colQua}" Text="Go To Home" />
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

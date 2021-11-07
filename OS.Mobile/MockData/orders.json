@@ -1,0 +1,32 @@
+﻿{
+  "orders": [
+    {
+      "id": 1,
+      "icon": "fruits.jpg",
+      "name": "Vegetables",
+      "code": "v1",
+      "description": "vegetables are good to health"
+    },
+    {
+      "id": 2,
+      "icon": "fruits.jpg",
+      "name": "Fruits",
+      "code": "f1",
+      "description": "fruits are good to health"
+    },
+    {
+      "id": 3,
+      "icon": "fruits.jpg",
+      "name": "Food grains",
+      "code": "fg1",
+      "description": "cerels are good to health"
+    },
+    {
+      "id": 4,
+      "icon": "fruits.jpg",
+      "name": "Dairy",
+      "code": "d1",
+      "description": "dairy is good to health"
+    }
+  ]
+}

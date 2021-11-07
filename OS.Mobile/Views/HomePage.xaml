@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+             xmlns:list="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             Title="The Organic Shop"
+             xmlns:local="clr-namespace:TheOrganicShop.Mobile.Behaviors"
+             xmlns:busyIndicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             x:Class="TheOrganicShop.Mobile.Views.HomePage"
+             xmlns:badgeView="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+             xmlns:converters="clr-namespace:TheOrganicShop.Mobile.Converters;assembly=TheOrganicShop.Mobile"
+             xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
+             xmlns:helpers="clr-namespace:TheOrganicShop.Mobile.Helpers"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Name="homePage"
+             BackgroundColor="{StaticResource PageBackGround}"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:InverseZeroVisibilityConverter x:Key="inverseZeroVisibilityConverter"/>
+            <helpers:ZeroVisibilityConverter x:Key="zeroVisibilityConverter"/>
+            <helpers:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
+            <converters:DecimalToInt x:Key="decimalToIntConverter"/>
+            <converters:BooleanToColorConverter x:Key="BoolToColorConverter" />
+            <converters:BooleanToStringConverter x:Key="BoolToStringConverter" />
+            <converters:VisibilityConverter x:Key="VisibilityConverter" />
+            <converters:IntToThicknessConverter x:Key="intToThicknessConverter" />
+            <converters:SourceConverter x:Key="SourceConverter" />
+            <converters:HeightConverter x:Key="HeightConverter" />
+            <!--<ImagePathConverter x:Key="ImagePathConverter"/>-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Shell.TitleView  >
+        <!--<badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center" BadgeText="20">
+            <badge:SfBadgeView.Content>
+                <buttons:SfButton x:Name="SfButton" ShowIcon="True"  ImageSource="{StaticResource icon_toolbar_cart}"/>
+            </badge:SfBadgeView.Content>
+        </badge:SfBadgeView>-->
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+            <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="The Organic Shop" VerticalTextAlignment="Center"
+               Opacity="1" TextColor="White"
+               Style="{StaticResource TxtCartDate}"/>
+            <badgeView:SfBadgeView
+            Padding="2"
+            HorizontalOptions="EndAndExpand"
+             Margin="{Binding Path=BindingContext.CartItemsCount, Source={x:Reference homePage}, Converter={x:StaticResource intToThicknessConverter}}"
+             BadgeText="{Binding Path=BindingContext.CartItemsCount, Source={x:Reference homePage}, Mode=TwoWay}"
+            HeightRequest="42"
+            VerticalOptions="CenterAndExpand"
+            WidthRequest="40"
+             >
+                <badgeView:SfBadgeView.Content
+                    >
+                    <!--<buttons:SfButton
+                    Command="{Binding Path=BindingContext.CheckoutCommand, Source={x:Reference Name=listView}}"
+                    HorizontalTextAlignment="Center" 
+                    Margin="-4,2,2,2" 
+                    BackgroundColor="ForestGreen"
+                    Text="Cart" />-->
+                    <ImageButton
+                        Command="{Binding Path=BindingContext.CheckoutCommand, Source={x:Reference Name=homePage}}"
+                        Source="{StaticResource icon_cart}"
+                        Margin="-4,2,8,2"
+                        BackgroundColor="{StaticResource colPrim}"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="EndAndExpand"
+                    />
+
+                </badgeView:SfBadgeView.Content>
+                <badgeView:SfBadgeView.BadgeSettings>
+                    <badgeView:BadgeSetting
+                    BackgroundColor="{StaticResource colQua}"
+                    TextColor="{StaticResource colPrim}"
+                    BadgeType="None"
+                    FontSize="12"
+                   />
+                </badgeView:SfBadgeView.BadgeSettings>
+            </badgeView:SfBadgeView>
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <!--<Image  Margin="8"     Source ="https://cdn.pixabay.com/photo/2020/06/01/10/02/puffin-5246026_960_720.jpg" />-->
+        <ScrollView>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="350"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Frame  Grid.Row="0" Margin="8"  HasShadow="True"  BackgroundColor="#F8FFFF" >
+                    <!--load banner images-->
+                    <rotator:SfRotator
+                                     
+                    BackgroundColor="{StaticResource Transparent} "
+                                       DotsBorderColor="Gray"
+                                       HeightRequest="250"
+                                       HorizontalOptions="StartAndExpand"
+                                       ItemsSource="{Binding BannerItemsDto}"
+                                       NavigationDirection="Horizontal"
+                                       NavigationStripMode="Dots"
+                                       SelectedDotColor="{StaticResource colPrim}"
+                                       UnselectedDotColor="{DynamicResource Gray-200}"
+                                       VerticalOptions="Start" EnableAutoPlay="True" NavigationDelay="2000">
+                        <rotator:SfRotator.ItemTemplate>
+                            <DataTemplate>
+                                <ffimageloading:CachedImage 
+                                                            Grid.Row="0"
+                                                            Source="{Binding ImageUri, Converter={StaticResource SourceConverter}}"
+                                                            ErrorPlaceholder="Default-568h@2x.png"
+                                                            LoadingPlaceholder="Default-568h@2x.png"
+                                                            Aspect="AspectFill"
+                                                            CacheDuration="1"
+                                                            HeightRequest="{OnIdiom Phone=110,
+                                                                                    Tablet=240,
+                                                                                    Desktop=120}"
+                                                            WidthRequest="{OnIdiom Phone=110,
+                                                                                   Tablet=224,
+                                                                                   Desktop=200}"
+                                                            />
+
+
+                            </DataTemplate>
+                        </rotator:SfRotator.ItemTemplate>
+                    </rotator:SfRotator>
+                </Frame>
+                <StackLayout Grid.Row="1"  Margin="6,6,6,6" Spacing="8" VerticalOptions="FillAndExpand">
+                    <Label Margin="0,0,0,4"  Text="Order Calender" FontAttributes="Bold" FontSize="20" CharacterSpacing="1"  TextColor="{StaticResource colPrim}"/>
+                    <Frame  HasShadow="True"  BackgroundColor="#F8FFFF" VerticalOptions="FillAndExpand">
+                        <shimmer:SfShimmer x:Name="shimmer"  VerticalOptions="Fill" Type="Article" IsActive="{Binding IsLoading}">
+                            <shimmer:SfShimmer.Content>
+                                <StackLayout Margin="0,24,0,0" >
+                                    <Frame HasShadow="True" CornerRadius="8" Margin="6,0,6,0" >
+                                        <list:SfListView  IsScrollBarVisible="False" x:Name="listView1" HeightRequest="70"
+                                            Orientation="Horizontal"
+                                            BackgroundColor="{StaticResource colQua}"
+                                            ItemSize="55"
+                                            AllowSwiping="False"
+                                            SelectionBackgroundColor="{StaticResource colPrim}"
+                                            SelectedItem="{Binding SelectedOrderCalenderInfoItem, Mode=TwoWay}"
+                                            ItemsSource="{Binding OrderCalenderInfoItems}">
+                                            <list:SfListView.Behaviors>
+                                                <local:Behavior Command="{Binding Path=BindingContext.DateSelectedCommand, Source={x:Reference homePage}}"/>
+                                            </list:SfListView.Behaviors>
+                                            <list:SfListView.ItemTemplate >
+                                                <DataTemplate x:Name="ItemTemplate">
+                                                    <StackLayout VerticalOptions="Center">
+                                                        <Label HorizontalOptions="Center" FontSize="16" Margin="2" TextColor="{Binding LabelTextColor}"  Style="{StaticResource subheader}"  FontAttributes="Bold" Text="{Binding DayShortName}"></Label>
+                                                        <Label HorizontalOptions="Center" FontSize="16" Margin="2" TextColor="{Binding LabelTextColor}" Style="{StaticResource subheader}" FontAttributes="Bold"  Text="{Binding OrderDateForDisplay}"></Label>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </list:SfListView.ItemTemplate>
+                                        </list:SfListView>
+                                    </Frame>
+                                    <StackLayout Orientation="Vertical" Margin="16" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Label VerticalTextAlignment="Center" Margin="8"
+                                            VerticalOptions ="Center"
+                                            FontSize  ="18"
+                                            HorizontalTextAlignment="Center"
+                                            FontAttributes="Bold"
+                                            TextColor="{StaticResource colPrim}" Text="{Binding HelperText, Mode=TwoWay}"
+                                            Style="{StaticResource subheader}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer  Command="{Binding ViewOrdersCommand}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Button Margin="8"
+                                            IsVisible="{Binding ShowAddItem}"
+                                            Clicked="Button_ClickedAsync"
+                                            CommandParameter="{Binding SelectedDate}"
+                                            Style="{StaticResource RoundedButtonStyle}"
+                                            Text="+"/>
+                                        <Label VerticalOptions ="Center"
+                                            VerticalTextAlignment="Center"
+                                            FontSize  ="18"
+                                            HorizontalTextAlignment="Center"
+                                            FontAttributes="Bold"
+                                            TextColor="{StaticResource colPrim}"
+                                            IsVisible="{Binding ShowAddItem}"
+                                            Margin="8"
+                                            Text="Add Item"
+                                            Style="{StaticResource subheader}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </shimmer:SfShimmer.Content>
+                        </shimmer:SfShimmer>
+                    </Frame>
+
+                </StackLayout>
+                <StackLayout  Grid.Row="2" Margin="6,6,6,0" VerticalOptions="Start">
+                    <Label Margin="0,0,0,4"  Text="Current Week Orders" CharacterSpacing="1" FontAttributes="Bold" FontSize="20" TextColor="{StaticResource colPrim}"/>
+                    
+                        <shimmer:SfShimmer x:Name="shimmer1" VerticalOptions="Fill" Type="Article" IsActive="{Binding IsLoading}">
+                            <shimmer:SfShimmer.Content>
+                                <StackLayout >
+                                    <Label IsVisible="{Binding ShowWeekOrdersLabel}"  Text="No orders placed for current week." CharacterSpacing="1" FontAttributes="Bold" HorizontalOptions="Center" FontSize="16" TextColor="{StaticResource TitleColor}"/>
+                                    <list:SfListView
+                                        IsScrollBarVisible="False"
+                                        AutoFitMode="Height"
+                                        ItemSize="100"
+                                        Orientation="Vertical"
+                                        x:Name="listView2"
+                                        SelectionMode="None"
+                                        HeightRequest="{Binding CurrentWeekOrderItems, Converter={StaticResource HeightConverter}, ConverterParameter={x:Reference listView2}}"
+                                        ItemsSource="{Binding CurrentWeekOrderItems}">
+                                        <list:SfListView.Behaviors>
+                                            <local:SfListViewTapBehavior Command="{Binding Path=BindingContext.OrderSelectedCommand, Source={x:Reference homePage}}"/>
+                                        </list:SfListView.Behaviors>
+
+                                        <list:SfListView.ItemTemplate >
+                                            <DataTemplate >
+                                                <Frame 
+                                   VerticalOptions="Center"
+                                                    BackgroundColor="{StaticResource colQua}"   
+                                   Margin="4"
+                                   Padding="4"
+                                   CornerRadius="4">
+                                                    <StackLayout Margin="4">
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label Text="{Binding OrderedForDate, StringFormat='{0:d}'}" Margin="8,0,0,0"  TextColor="{StaticResource TitleColor} " FontAttributes="Bold" FontSize="18" ></Label>
+                                                            <Label  Text="{Binding TotalAmount, Converter={StaticResource decimalToIntConverter}}" Margin="0,0,8,0" TextColor="{StaticResource colPrim}" FontAttributes="Bold" HorizontalOptions="EndAndExpand"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label Margin="8,0,0,0" FontSize="15" TextColor="{StaticResource TitleColor} " Text="Status"></Label>
+                                                            <Label  Margin="8,0,0,0" FontSize="16" Text="{Binding OrderStatus}"  FontAttributes="Bold" TextColor="{StaticResource colPrim}"></Label>
+                                                        </StackLayout>
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label  Margin="8,0,0,0" FontSize="15" TextColor="{StaticResource TitleColor} " Text="Order Reference"></Label>
+                                                            <Label Margin="8,0,0,0" FontSize="16" Text="{Binding Number}" TextColor="{StaticResource TitleColor}" ></Label>
+
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </list:SfListView.ItemTemplate>
+                                    </list:SfListView>
+                                </StackLayout>
+                            </shimmer:SfShimmer.Content>
+                        </shimmer:SfShimmer>
+                    
+                </StackLayout>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

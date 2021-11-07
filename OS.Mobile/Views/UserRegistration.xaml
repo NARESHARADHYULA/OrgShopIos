@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TheOrganicShop.Mobile.Views.UserRegistration"
+             xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:local1="clr-namespace:TheOrganicShop.Mobile.Extensions"
+             BackgroundColor="{StaticResource PageBackGround}"
+             NavigationPage.HasNavigationBar="False"
+             >
+    <ContentPage.Content>
+        <ScrollView  Margin="16">
+            <StackLayout Margin="16,48,16,48">
+                <ImageButton Margin="8"
+                            WidthRequest ="120"
+                            HeightRequest     ="120"
+                            CornerRadius      ="60"
+                            VerticalOptions   ="Center"
+                            BackgroundColor="{StaticResource RoundedIconBackGround}"
+                            HorizontalOptions ="Center"
+                            Source="place"
+                            />
+                <Label Text="Verify OTP" Margin="8" FontSize="24" HorizontalOptions="Center" TextColor="{StaticResource colPrim}"/>
+                <Label Text="{Binding ContactNumber, StringFormat='we have sent otp to {0}'}"  FontSize="16" Margin="8" HorizontalOptions="Center" HorizontalTextAlignment="Center"  TextColor="{StaticResource TitleColor}"/>
+                <!--<Entry x:Name="Mobile" Text="{Binding ContactNumber}" Placeholder="Mobile"   
+                           PlaceholderColor="White" HeightRequest="40"   
+                           />
+                    <Button Command="{Binding SendOtpCommand}" Text="SendOtp" TextColor="White"  
+                            FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    />-->
+                <inputLayout:SfTextInputLayout
+                        ContainerType="Outlined"
+                        Margin="48,0,48,0"
+                        Hint="Enter Otp"
+                        HorizontalOptions="Center"
+                        ReserveSpaceForAssistiveLabels="False"
+                        FocusedColor="{StaticResource colPrim}">
+                    <local1:CustomEntry  x:Name="Otp" Text="{Binding OtpNumber, Mode=TwoWay}" Style="{StaticResource TxtHeader}" TextColor="{StaticResource TitleColor}"
+                           PlaceholderColor="Gray"
+                          />
+                </inputLayout:SfTextInputLayout>
+                <Button Margin="32" Command="{Binding OtpValidateCommand}" FontAttributes="Bold" Text="Verify OTP" Style="{StaticResource EllipseButtonStyle}"  
+                     />
+                </StackLayout>
+           
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:busyIndicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             CloseWhenBackgroundIsClicked="False"
+             x:Class="TheOrganicShop.Mobile.Views.LoaderPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="40,0" >
+            <Frame  CornerRadius="8"    HeightRequest="75" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
+                    <ActivityIndicator IsRunning="True" Color="{StaticResource colPrim}" Scale="0.5"/>
+                    <Label Margin="8,0,0,0" VerticalOptions="Center" FontSize="20"  Text="Loading please wait..." Style="{StaticResource TxtHeader}"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>
