@@ -28,6 +28,7 @@ namespace TheOrganicShop.Mobile.ViewModels
         public UserCartViewModel(IUserCartDataService cartDataService)
         {
             isLoading = true;
+            IsEmptyViewVisible = true;
             this.cartDataService = cartDataService;
         }
 
