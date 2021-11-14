@@ -101,7 +101,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Frame BackgroundColor="WhiteSmoke">
-                <SearchBar BackgroundColor="WhiteSmoke" x:Name="productsfilter" Placeholder="Find Products"   TextColor="{StaticResource TitleColor}" PlaceholderColor="LightGray" />
+                <SearchBar  BackgroundColor="{StaticResource PageBackGround}" x:Name="productsfilter" Placeholder="Find Products"   TextColor="{StaticResource TitleColor}" PlaceholderColor="LightGray" />
             </Frame>
             <BoxView Grid.Row="1" HeightRequest="1" BackgroundColor="{DynamicResource Gray-200}"/>
             <ScrollView>

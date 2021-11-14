@@ -17,36 +17,19 @@
 
     <Grid.RowDefinitions>
         <RowDefinition Height="50" />
-        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-
-    <Image
-        Grid.RowSpan="2"
-        Grid.ColumnSpan="2"
-        Margin="-16,-39,-16,-10"
-        Source="img_bgflyout.png"
-        Aspect="AspectFill">
-        <Image.IsVisible>
-            <OnPlatform x:TypeArguments="x:Boolean">
-                <On
-                    Platform="Android, iOS"
-                    Value="False" />
-                <On
-                    Platform="UWP"
-                    Value="True" />
-            </OnPlatform>
-        </Image.IsVisible>
-    </Image>
 
     <Frame
         Grid.Row="0"
         Grid.Column="0"
         CornerRadius="25"
         BorderColor="#FFC5C5C5"
+        BackgroundColor="White"
         HasShadow="False"
         HorizontalOptions="Start">
         <Image
-            Source="img_profile.png"
+            Source="Avathar.png"
             HeightRequest="50"
             WidthRequest="50"
             VerticalOptions="Center"
