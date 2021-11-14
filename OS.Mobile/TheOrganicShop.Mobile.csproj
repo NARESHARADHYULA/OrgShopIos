@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\Avathar.png" />
     <None Remove="Images\emptycart.jpg" />
     <None Remove="Images\EmptyCart.svg" />
     <None Remove="Images\imageplaceholder.png" />
@@ -40,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Images\Avathar.png" />
     <EmbeddedResource Include="Images\emptycart.jpg" />
     <EmbeddedResource Include="Images\EmptyCart.svg" />
     <EmbeddedResource Include="Images\imageplaceholder.png" />
@@ -78,7 +80,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.3.0.44" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.7638" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.7828" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
     <PackageReference Include="Xamarin.Forms.DebugRainbows" Version="1.1.4" />
     <PackageReference Include="Paytm.AllInOneSdk" Version="1.1.1" />
