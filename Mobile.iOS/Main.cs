@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
+[assembly: Preserve(typeof(AllInOneSdk.AIHandler), AllMembers = true)]
 namespace TheOrganicShop.Mobile.iOS
 {
     public class Application

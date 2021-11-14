@@ -215,13 +215,13 @@ namespace TheOrganicShop.Mobile.ViewModels
         {
             try
             {
-                await PopupNavigation.Instance.PushAsync(new LoaderPage());
+                //await PopupNavigation.Instance.PushAsync(new LoaderPage());
                 // await Device.InvokeOnMainThreadAsync(async () => await PopupNavigation.Instance.PushAsync(new LoaderPage()));
                 DisableAddMoneyToWallet = false;
                 if (MoneyToBeAdded == 0)
                 {
                     await Application.Current.MainPage.DisplayAlert("Info", "Please Add Amount.", "OK");
-                    await PopupNavigation.Instance.PopAsync();
+                    //await PopupNavigation.Instance.PopAsync();
                     return;
                 }
                 //MessagingCenter.Send(new UserPaymentInputDto() { UserId = App.UserId, amount = MoneyToBeAdded * 100, currency = "INR" }, "AddMoney");
@@ -238,7 +238,7 @@ namespace TheOrganicShop.Mobile.ViewModels
 
                 var paymentResponse = _paymentDataService.InitiateTransactionAsync(_paymentInputDto);
 
-                await PopupNavigation.Instance.PopAsync();
+                //await PopupNavigation.Instance.PopAsync();
 
                 AllInOnePlugin.startTransaction(_paymentInputDto.orderId, "hmFtQh85822019774200",
                     paymentResponse.body.txnToken, _paymentInputDto.amount.ToString(), "", true, true, this);
