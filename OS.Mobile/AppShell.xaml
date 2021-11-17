@@ -6,15 +6,11 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ShellTemplate="clr-namespace:TheOrganicShop.Mobile.Views.ShellTemplates"
+    xmlns:controls="clr-namespace:TheOrganicShop.Mobile.Controls"
     xmlns:view="clr-namespace:TheOrganicShop.Mobile.Views"
     Title="Organic Shop" FlyoutBackgroundImageAspect="AspectFill"
     FlyoutIcon="{StaticResource icon_fly_main}"
     FlyoutBehavior="Flyout"
-    FlyoutHeaderTemplate="{DataTemplate ShellTemplate:FlyoutHeaderTemplate}"
-    FlyoutHeaderBehavior="Scroll"
-    ItemTemplate="{DataTemplate ShellTemplate:FlyoutMenuItemTemplate}"
-    MenuItemTemplate="{DataTemplate ShellTemplate:FlyoutMenuItemTemplate}"
-    BackgroundColor="{StaticResource BackgroundColor}"
     mc:Ignorable="d">
 
 
@@ -70,7 +66,12 @@
             ApplyToDerivedTypes="True" />
     <!--#endregion-->
 </Shell.Resources>
-<!--#endregion-->
+
+    <Shell.FlyoutHeader>
+        <controls:FlyoutHeaderTemplate />
+
+    </Shell.FlyoutHeader>
+    <!--#endregion-->
     <FlyoutItem Title="Home" Icon="{StaticResource icon_fly_home}" >
     <ShellContent  ContentTemplate="{DataTemplate view:HomePage}" />
 </FlyoutItem>
