@@ -26,7 +26,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior IconOverride="{StaticResource back_icon}" />
+        <BackButtonBehavior  Command="{Binding  BackButtonCommand}" IconOverride="{StaticResource back_icon}" />
     </Shell.BackButtonBehavior>
     <ContentPage.Content>
         <StackLayout>

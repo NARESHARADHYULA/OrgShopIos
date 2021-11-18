@@ -94,12 +94,15 @@ namespace TheOrganicShop.Mobile.ViewModels
                 OnPropertyChanged();
             }
         }
+        private DelegateCommand backButtonCommand;
         private DelegateCommand deleteOrderCommand;
         public DelegateCommand DeleteOrderCommand =>
                deleteOrderCommand ?? (deleteOrderCommand = new DelegateCommand(UpdateOrderStatusAsync));
         private DelegateCommand deleteOrderDetailsCommand;
         public DelegateCommand DeleteOrderDetailsCommand =>
                deleteOrderDetailsCommand ?? (deleteOrderDetailsCommand = new DelegateCommand(UpdateOrderDetailStatusAsync));
+        public DelegateCommand BackButtonCommand =>
+         backButtonCommand ?? (backButtonCommand = new DelegateCommand(BackButtonClicked));
 
         #endregion
 
@@ -235,6 +238,20 @@ namespace TheOrganicShop.Mobile.ViewModels
                 IsLoading = false;
             }
             
+        }
+
+
+        /// <summary>
+        /// Invoked when an back button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private async void BackButtonClicked(object obj)
+        {
+            if (Shell.Current.CurrentState.Location.OriginalString.Contains("home"))
+            { // this is coming from the final page need to clear the navigation stack..
+                Application.Current.MainPage = new AppShell();
+            }
+            Shell.Current.SendBackButtonPressed();
         }
     }
 }

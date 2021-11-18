@@ -8,11 +8,8 @@
              Title="Manage Address"
              x:Name="manageaddress"
              x:Class="TheOrganicShop.Mobile.Views.MyAddresses">
-    <Shell.BackButtonBehavior>
-        <BackButtonBehavior 
-                            IconOverride="{StaticResource back_icon}" />
-    </Shell.BackButtonBehavior>
-    
+    <Shell.BackButtonBehavior>        <BackButtonBehavior  Command="{Binding  BackButtonCommand}" IconOverride="{StaticResource back_icon}" />    </Shell.BackButtonBehavior>
+
     <ContentPage.Content>
         <StackLayout>
             <Label HorizontalOptions="EndAndExpand" Text="+ADD NEW ADDRESS"  FontAttributes="Bold" Margin="8"

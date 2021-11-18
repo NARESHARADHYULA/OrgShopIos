@@ -67,9 +67,9 @@ namespace TheOrganicShop.Mobile.ViewModels
             UserAddress = new ObservableCollection<GetUserAddressDtoMobileForView>();
             Device.InvokeOnMainThreadAsync(async () =>
             {
-                
+
                 await FetchUserAddress();
-                
+
             });
         }
 
@@ -79,6 +79,7 @@ namespace TheOrganicShop.Mobile.ViewModels
 
         private ObservableCollection<GetUserAddressDtoMobileForView> userAddress;
 
+        private DelegateCommand backButtonCommand;
         private DelegateCommand addAddressClickedCommand;
         private DelegateCommand editAddressClickedCommand;
         private DelegateCommand removeAddressClickedCommand;
@@ -117,7 +118,8 @@ namespace TheOrganicShop.Mobile.ViewModels
            editAddressClickedCommand ?? (editAddressClickedCommand = new DelegateCommand(EditAddress));
         public DelegateCommand RemoveAddressCommand =>
            removeAddressClickedCommand ?? (removeAddressClickedCommand = new DelegateCommand(DeleteAddress));
-
+        public DelegateCommand BackButtonCommand =>
+       backButtonCommand ?? (backButtonCommand = new DelegateCommand(BackButtonClicked));
         #endregion
 
         #region Methods
@@ -154,7 +156,7 @@ namespace TheOrganicShop.Mobile.ViewModels
 
         private async void OpenNewAddressForm(object obj)
         {
-            if (UserAddress.Count>0)
+            if (UserAddress.Count > 0)
             {
                 await Application.Current.MainPage.DisplayAlert("Info", "Cannot create more than one address", "OK");
             }
@@ -162,7 +164,7 @@ namespace TheOrganicShop.Mobile.ViewModels
             {
                 await Shell.Current.GoToAsync($"newaddressform?id={0}");
             }
-            
+
         }
         private async void EditAddress(object obj)
         {
@@ -174,6 +176,14 @@ namespace TheOrganicShop.Mobile.ViewModels
             await Shell.Current.GoToAsync("newaddressform");
         }
 
+        /// <summary>
+        /// Invoked when an back button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private async void BackButtonClicked(object obj)
+        {
+                Application.Current.MainPage = new AppShell();
+        }
         #endregion
     }
 }

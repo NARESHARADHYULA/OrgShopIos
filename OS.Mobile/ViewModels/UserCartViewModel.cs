@@ -36,10 +36,12 @@ namespace TheOrganicShop.Mobile.ViewModels
         dateChangedCommand ?? (dateChangedCommand = new DelegateCommand(DateSeleceted));
 
         private DelegateCommand dateChangedCommand;
-
+        private DelegateCommand backButtonCommand;
         private DelegateCommand dateSelectedCommand;
         public DelegateCommand DateSelectedCommand =>
            dateSelectedCommand ?? (dateSelectedCommand = new DelegateCommand(DateSeleceted));
+        public DelegateCommand BackButtonCommand =>
+        backButtonCommand ?? (backButtonCommand = new DelegateCommand(BackButtonClicked));
         private ObservableCollection<GetOrderCalenderInfoDtoMobileForView> _orderCalenderInfoItems;
         public ObservableCollection<GetOrderCalenderInfoDtoMobileForView> OrderCalenderInfoItems
         {
@@ -144,7 +146,6 @@ namespace TheOrganicShop.Mobile.ViewModels
 
         private List<object> quantities;
 
-        private DelegateCommand backButtonCommand;
         #endregion
 
         #region Public properties
@@ -662,25 +663,14 @@ namespace TheOrganicShop.Mobile.ViewModels
         /// Invoked when an back button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private async void BackButtonClicked1(object obj)
+        private async void BackButtonClicked(object obj)
         {
-            if (Application.Current.MainPage is NavigationPage &&
-                (Application.Current.MainPage as NavigationPage).CurrentPage is HomePage)
-            {
-                var mainPage =
-                    (((Application.Current.MainPage as NavigationPage).CurrentPage as MasterDetailPage)
-                        .Detail as NavigationPage).CurrentPage as TabbedPage;
-                mainPage.CurrentPage = mainPage.Children[0];
+            if (Shell.Current.CurrentState.Location.OriginalString.Contains("home"))
+            { // this is coming from the final page need to clear the navigation stack..
+                Application.Current.MainPage = new AppShell();
             }
-            else
-            {
-                await Application.Current.MainPage.Navigation.PopAsync();
-            }
+            Shell.Current.SendBackButtonPressed();
         }
-        /// <summary>
-        /// Invoked when an back button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
 
 
         #endregion
