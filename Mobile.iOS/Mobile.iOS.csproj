@@ -280,5 +280,8 @@
   <ItemGroup>
     <BundleResource Include="Resources\Avathar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\imageplaceholder.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
