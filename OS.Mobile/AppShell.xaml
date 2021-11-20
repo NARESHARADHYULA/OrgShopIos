@@ -68,7 +68,7 @@
 </Shell.Resources>
 
     <Shell.FlyoutHeader>
-        <controls:FlyoutHeader />
+        <controls:FlyoutHeaderTemplate />
 
     </Shell.FlyoutHeader>
     <!--#endregion-->

@@ -38,7 +38,7 @@
                              HorizontalOptions="FillAndExpand"
                               />
 
-                        LightGray
+                        
                         <BoxView BackgroundColor="LightGray"
                              Grid.Row="1"
                              Grid.ColumnSpan="2"
