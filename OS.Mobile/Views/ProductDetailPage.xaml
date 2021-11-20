@@ -168,7 +168,9 @@
                                                             ErrorPlaceholder="imageplaceholder.png"
                                                             LoadingPlaceholder="imageplaceholder.png"
                                                             Aspect="AspectFill"
-                                                            CacheDuration="1"
+                                                            CacheDuration="2"
+                                                            CacheType="Memory"
+                                                            DownsampleToViewSize ="True"
                                                             WidthRequest="{OnIdiom Phone=120,
                                                                Tablet=224,
                                                                Desktop=200}"

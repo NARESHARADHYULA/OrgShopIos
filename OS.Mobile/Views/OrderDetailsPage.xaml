@@ -122,7 +122,9 @@
                                                             ErrorPlaceholder="imageplaceholder.png"
                                                             LoadingPlaceholder="imageplaceholder.png"
                                                             Aspect="AspectFill"
-                                                            CacheDuration="1"
+                                                             CacheDuration="2"
+                                                            CacheType="Memory"
+                                                            DownsampleToViewSize ="True"
                                                            HeightRequest="{OnIdiom Phone=80,
                                                                 Tablet=240,
                                                                 Desktop=120}"
