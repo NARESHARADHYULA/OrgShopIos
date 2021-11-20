@@ -15,6 +15,7 @@ namespace TheOrganicShop.Mobile.Controls
         public FlyoutHeaderTemplate()
         {
             InitializeComponent();
+            name.Text = App.UseName;
         }
     }
 }

@@ -1,15 +1,36 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TheOrganicShop.Mobile.Controls.FlyoutHeaderTemplate" HeightRequest="200">
+             BackgroundColor="{StaticResource colPrim}"
+             x:Class="TheOrganicShop.Mobile.Controls.FlyoutHeaderTemplate" HeightRequest="100">
 
-    <Grid BackgroundColor="Red">
+    <StackLayout BackgroundColor="{StaticResource colPrim}">
 
-        <Label Text="Animals" 
-               TextColor="White" 
-               FontAttributes="Bold" 
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center" />
-    </Grid>
+        <Frame
+       
+        CornerRadius="25"
+        BorderColor="#FFC5C5C5"
+        BackgroundColor="White"
+        HasShadow="False"
+            VerticalOptions="Center"
+        HorizontalOptions="Start">
+            <Image
+            Source="Avathar.png"
+            HeightRequest="50"
+            WidthRequest="50"
+            VerticalOptions="Center"
+            HorizontalOptions="Start"
+            Aspect="AspectFill" />
+        </Frame>
+
+
+        <Label
+        x:Name="name"
+        
+             VerticalOptions="Center"
+        HorizontalOptions="Start"
+        Style="{StaticResource TxtH6Flyout_1}" />
+
+    </StackLayout>
 
 </ContentView>

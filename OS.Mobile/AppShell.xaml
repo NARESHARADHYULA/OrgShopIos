@@ -9,8 +9,11 @@
     xmlns:controls="clr-namespace:TheOrganicShop.Mobile.Controls"
     xmlns:view="clr-namespace:TheOrganicShop.Mobile.Views"
     Title="Organic Shop" FlyoutBackgroundImageAspect="AspectFill"
+    FlyoutBackgroundColor="{StaticResource colAltQua}"
     FlyoutIcon="{StaticResource icon_fly_main}"
     FlyoutBehavior="Flyout"
+     ItemTemplate="{DataTemplate ShellTemplate:FlyoutMenuItemTemplate}"
+    MenuItemTemplate="{DataTemplate ShellTemplate:FlyoutMenuItemTemplate}"
     mc:Ignorable="d">
 
 

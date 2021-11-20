@@ -277,7 +277,7 @@ namespace TheOrganicShop.Mobile.Views
             /// <param name="obj">The Object</param>
             private async void BackButtonClicked(object obj)
             {
-                if (Shell.Current.CurrentState.Location.OriginalString.Contains("mywallet"))
+                if (Shell.Current.CurrentState.Location.OriginalString.Contains("orderplaced"))
                 { // this is coming from the final page need to clear the navigation stack..
                     Application.Current.MainPage = new AppShell();
                 }
