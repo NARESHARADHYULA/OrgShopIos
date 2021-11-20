@@ -4,19 +4,20 @@
              BackgroundColor="{StaticResource colPrim}"
              x:Class="TheOrganicShop.Mobile.Controls.FlyoutHeaderTemplate" HeightRequest="150">
 
-    <StackLayout BackgroundColor="{StaticResource colPrim}">
-
+    <StackLayout Padding="25" BackgroundColor="{StaticResource colPrim}" VerticalOptions="Center">
+        <StackLayout HorizontalOptions="Start">
         <Frame
-        CornerRadius="25"
+            
+        CornerRadius="40"
         BorderColor="#FFC5C5C5"
         BackgroundColor="White"
         HasShadow="False"
-            VerticalOptions="Center"
-        HorizontalOptions="Start">
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
             <Image
             Source="Avathar.png"
-            HeightRequest="50"
-            WidthRequest="50"
+            HeightRequest="80"
+            WidthRequest="80"
             VerticalOptions="Center"
             HorizontalOptions="Start"
             Aspect="AspectFill" />
@@ -25,9 +26,11 @@
         <Label
         x:Name="name"
         
-             VerticalOptions="Center"
-        HorizontalOptions="Start"
+         VerticalOptions="Center"
+            
+        HorizontalOptions="Center"
         Style="{StaticResource TxtH6Flyout_1}" />
+            </StackLayout>
 
     </StackLayout>
 
