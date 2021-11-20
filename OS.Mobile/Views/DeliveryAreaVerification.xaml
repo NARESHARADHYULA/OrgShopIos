@@ -78,7 +78,7 @@
                             FontAttributes="Bold"
                             Command="{Binding SubmitAddressCommand}"
                             Style="{StaticResource EllipseButtonStyle}"
-                            Text="Continue"/>
+                            Text=" Continue "/>
                         </Frame>
                     </StackLayout>
                 </Frame>

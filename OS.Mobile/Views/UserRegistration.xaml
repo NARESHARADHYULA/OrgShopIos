@@ -38,7 +38,7 @@
                            PlaceholderColor="Gray"
                           />
                 </inputLayout:SfTextInputLayout>
-                <Button Margin="32" Command="{Binding OtpValidateCommand}" FontAttributes="Bold" Text="Verify OTP" Style="{StaticResource EllipseButtonStyle}"  
+                <Button Margin="32" Command="{Binding OtpValidateCommand}" FontAttributes="Bold" Text=" Verify OTP " Style="{StaticResource EllipseButtonStyle}"  
                      />
                 </StackLayout>
            
