@@ -267,7 +267,7 @@ namespace TheOrganicShop.Mobile.ViewModels
             var orderSelectedDate = Convert.ToDateTime(selectedDateDto.OrderDate);
             if (currentDate >= orderSelectedDate)
             {
-                HelperText = "Cut Off Time Reached";
+                HelperText = "Cutoff Time Reached";
                 ShowAddItem = false;
             }
             else
@@ -381,7 +381,7 @@ namespace TheOrganicShop.Mobile.ViewModels
                     var orderSelectedDate = Convert.ToDateTime(defaultItem.OrderDate);
                     if (currentDate >= orderSelectedDate)
                     {
-                        HelperText = "Cut Off Time Reached";
+                        HelperText = "Cutoff Time Reached";
                         ShowAddItem = false;
                     }
                     else

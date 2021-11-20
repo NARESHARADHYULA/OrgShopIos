@@ -10,7 +10,7 @@
             <Frame  CornerRadius="8"    HeightRequest="75" BackgroundColor="White" HorizontalOptions="FillAndExpand">
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
                     <ActivityIndicator IsRunning="True" Color="{StaticResource colPrim}" Scale="0.5"/>
-                    <Label Margin="8,0,0,0" VerticalOptions="Center" FontSize="20"  Text="Loading please wait..." Style="{StaticResource TxtHeader}"/>
+                    <Label Margin="8,0,0,0" VerticalOptions="Center" FontSize="20" TextColor="{StaticResource TitleColor}"  Text="Loading please wait..." Style="{StaticResource TxtHeader}"/>
                 </StackLayout>
             </Frame>
         </StackLayout>

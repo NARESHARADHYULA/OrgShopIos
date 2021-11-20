@@ -77,23 +77,23 @@
                             <RowDefinition Height="80" />
                         </Grid.RowDefinitions>
 
-                        <BoxView BackgroundColor="LightCyan"
+                        <BoxView BackgroundColor="LightGray"
                              Grid.Row="0"
                              Grid.ColumnSpan="2"
                              HorizontalOptions="FillAndExpand"
                               />
 
-                        <BoxView BackgroundColor="LightCyan"
+                        <BoxView BackgroundColor="LightGray"
                              Grid.Row="1"
                              Grid.ColumnSpan="2"
                              HorizontalOptions="FillAndExpand"
                               />
-                        <BoxView BackgroundColor="LightCyan"
+                        <BoxView BackgroundColor="LightGray"
                              Grid.Row="2"
                              Grid.ColumnSpan="2"
                              HorizontalOptions="FillAndExpand"
                               />
-                        <BoxView BackgroundColor="LightCyan"
+                        <BoxView BackgroundColor="LightGray"
                              Grid.Row="3"
                              Grid.ColumnSpan="2"
                              HorizontalOptions="FillAndExpand"
