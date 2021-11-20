@@ -2,12 +2,11 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BackgroundColor="{StaticResource colPrim}"
-             x:Class="TheOrganicShop.Mobile.Controls.FlyoutHeaderTemplate" HeightRequest="100">
+             x:Class="TheOrganicShop.Mobile.Controls.FlyoutHeaderTemplate" HeightRequest="150">
 
     <StackLayout BackgroundColor="{StaticResource colPrim}">
 
         <Frame
-       
         CornerRadius="25"
         BorderColor="#FFC5C5C5"
         BackgroundColor="White"
@@ -22,7 +21,6 @@
             HorizontalOptions="Start"
             Aspect="AspectFill" />
         </Frame>
-
 
         <Label
         x:Name="name"
